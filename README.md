@@ -90,13 +90,17 @@ irregular em previews de link.
 ## Ritmo visual das seções
 
 Três seções escuras ancoram a página — **hero**, **diferenciais** e **contato**
-(mais o rodapé) — e todo o resto respira em claro. É o que dá cadência à leitura
-e mantém o hero como o momento de maior peso.
+(mais o rodapé) — e o restante respira em claro. É o que dá cadência à leitura.
 
-Evite introduzir um quarto bloco escuro, sobretudo perto do hero: dois blocos
-azuis seguidos fazem o hero perder o posto de ponto mais forte, e quanto mais
-azul saturado na página, menos o verde do botão de WhatsApp se destaca. A cor
-tem três papéis separados:
+A exceção é a seção **problemas**, cujos três cards são azuis por decisão do
+cliente. Vale saber o trade-off antes de mexer: por ficar logo abaixo do hero,
+ela forma um segundo bloco azul quase colado nele, o que divide o peso visual da
+abertura da página. Se um dia a taxa de contato pelo hero preocupar, testar
+esses cards em claro é o primeiro experimento a fazer.
+
+Fora isso, evite acrescentar blocos escuros: quanto mais azul saturado na
+página, menos o verde do botão de WhatsApp se destaca — e é ele que converte. A
+cor tem três papéis separados:
 
 | Papel | Cor | Onde |
 |---|---|---|
