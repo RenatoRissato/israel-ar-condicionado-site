@@ -31,7 +31,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&amp;display=swap">
-  <link rel="preload" href="assets/hero-instalacao-israel.webp" as="image" type="image/webp">
+  <link rel="preload" as="image" type="image/webp" href="assets/hero-instalacao-israel.webp"
+        imagesrcset="assets/hero-instalacao-israel.webp 690w, assets/hero-instalacao-israel-2x.webp 1380w"
+        imagesizes="(max-width: 560px) 76vw, (max-width: 820px) 48vw, (max-width: 1080px) 360px, 430px">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
   <script type="application/ld+json">
@@ -188,7 +190,7 @@
 
         <div class="hero-visual reveal">
           <div class="hero-image-wrap">
-            <img src="assets/hero-instalacao-israel.webp" alt="Técnico da Israel Ar-condicionado realizando uma instalação" width="690" height="915" fetchpriority="high" decoding="async">
+            <img src="assets/hero-instalacao-israel.webp" srcset="assets/hero-instalacao-israel.webp 690w, assets/hero-instalacao-israel-2x.webp 1380w" sizes="(max-width: 560px) 76vw, (max-width: 820px) 48vw, (max-width: 1080px) 360px, 430px" alt="Técnico da Israel Ar-condicionado realizando uma instalação" width="690" height="915" fetchpriority="high" decoding="async">
           </div>
           <div class="hero-badge hero-badge-top">
             <svg aria-hidden="true"><use href="#icon-shield"></use></svg>

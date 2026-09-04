@@ -78,6 +78,25 @@ Depois de publicar, valide em:
 - [Rich Results Test](https://search.google.com/test/rich-results) — confere o FAQ
 - [Sharing Debugger](https://developers.facebook.com/tools/debug/) — força o cache da og:image
 
+## Imagem do hero
+
+`hero-instalacao-israel.webp` (690px) e `hero-instalacao-israel-2x.webp` (1380px)
+são servidas por `srcset`, para que telas de alta densidade recebam o dobro de
+pixels e as comuns baixem só a menor.
+
+O `<link rel="preload">` no `<head>` repete o mesmo `imagesrcset`/`imagesizes`
+do `<img>`. **Se alterar um, altere o outro** — valores divergentes fazem o
+navegador baixar duas versões da imagem.
+
+O `sizes` vem das larguras de `.hero-image-wrap` no CSS (430px, 360px, 48vw,
+76vw). Ao mexer nesses breakpoints, atualize o `sizes` junto.
+
+> O arquivo original recebido já vinha bem comprimido (0,25 bits/pixel), o que
+> custou detalhe fino de forma irrecuperável. O que existe hoje foi recuperado
+> por reamostragem e realce; se algum dia aparecer a foto original em alta
+> resolução, regerar a partir dela dá um resultado melhor do que qualquer
+> tratamento sobre o arquivo atual.
+
 ## Regerando a og:image
 
 `assets/og-image.jpg` (1200×630) é gerada a partir dos assets do site com o
