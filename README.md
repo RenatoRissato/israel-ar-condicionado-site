@@ -94,10 +94,23 @@ padrão ao adicionar comportamento.
 **`style.css`** concentra toda a paleta no `:root`. Não introduza cores
 hexadecimais no corpo do arquivo — crie ou reaproveite uma variável.
 
-> Dívida conhecida: a escala `--on-dark-*` tem 10 tons quase idênticos e os
-> `--accent-*` são 9 variações de ciano muito próximas, herdadas do design
-> original. Dá para consolidar em 3 ou 4 de cada com diferença visual
-> imperceptível — foi mantido como está para não alterar o layout sem revisão.
+Duas escalas cobrem tudo que fica sobre fundo escuro, nomeadas por luminosidade
+decrescente (100 é o mais claro):
+
+| Escala | Níveis | Uso |
+|---|---|---|
+| `--on-dark-100…600` | 6 | Texto sobre hero, "why", contato e rodapé |
+| `--accent-100…400` | 4 | Ciano de destaque: eyebrows, ícones, links sobre azul |
+
+O design original tinha 19 tons aqui, muitos separados por diferenças
+imperceptíveis. Foram consolidados por distância perceptual (ΔE em CIELAB,
+limite 5 para texto e 4 para acento), escolhendo em cada grupo o tom de **maior
+contraste**, de modo que nenhum uso perdesse legibilidade — os 19 usos ficam
+entre 5,4:1 e 12,3:1 sobre seus fundos reais, todos acima de WCAG AA.
+
+Ao escolher um nível, prefira o mais claro que couber na hierarquia: `100` para
+texto de destaque, `300` para corpo, `500`/`600` apenas para rótulos e notas
+de rodapé.
 
 ## Formulário de orçamento
 
