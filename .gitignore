@@ -1,0 +1,17 @@
+# Dependências (o site não usa build, mas evita commit acidental)
+node_modules/
+
+# Sistema operacional
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Saída de build / temporários
+dist/
+*.log
