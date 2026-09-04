@@ -3,23 +3,33 @@
 Site estático de página única para instalação, manutenção e higienização de
 ar-condicionado em Limeira e região.
 
-**Sem build, sem dependências.** São três arquivos servidos como estão:
-`index.html`, `style.css` e `script.js`. Não existe `package.json` e **não há
-`npm run dev`** — qualquer servidor de arquivos estáticos roda o site.
+**Sem build.** São três arquivos servidos como estão: `index.html`, `style.css`
+e `script.js`. O `package.json` existe apenas para oferecer o `npm run dev` — não
+há etapa de compilação, bundler ou pré-processador, e o deploy é subir os
+arquivos como estão.
 
 ## Rodando localmente
 
-Abrir o `index.html` direto no navegador funciona, mas prefira um servidor local
-para que caminhos e `fetch` se comportem como em produção:
+```bash
+npm install    # uma vez, instala apenas o servidor estático
+npm run dev    # http://localhost:3000
+```
+
+Sem instalar nada, qualquer um destes também serve:
 
 ```bash
-npx serve .          # ou
+npx serve .
 python -m http.server 8000
 ```
+
+Abrir o `index.html` com duplo clique funciona, mas prefira um servidor: sob
+`file://` o navegador trata cada arquivo como uma origem diferente e alguns
+comportamentos não batem com produção.
 
 ## Estrutura
 
 ```
+package.json    Só os scripts dev/start — nenhuma dependência de build
 index.html      Página inteira: conteúdo, sprite SVG de ícones e os dois blocos JSON-LD
 style.css       Estilos. Toda a paleta vive no :root do topo do arquivo
 script.js       Comportamento, dividido em funções init* independentes
@@ -124,7 +134,9 @@ assim, sem JavaScript, o navegador ainda exige os campos obrigatórios, e o
 ## Deploy
 
 Suba os arquivos como estão em qualquer hospedagem estática (Vercel, Netlify,
-Cloudflare Pages, GitHub Pages ou hospedagem tradicional). Nenhuma etapa de build.
+Cloudflare Pages, GitHub Pages ou hospedagem tradicional). Nenhuma etapa de build:
+deixe o comando de build **vazio** e a pasta de saída como a raiz do projeto. O
+`serve` é dependência de desenvolvimento e não vai para produção.
 
 Configure o servidor para servir `index.html` na raiz e redirecionar a variante
 sem `www` para `https://www.israelarcondicionado.com.br/`, que é a URL declarada
