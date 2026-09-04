@@ -92,11 +92,15 @@ irregular em previews de link.
 Três seções escuras ancoram a página — **hero**, **diferenciais** e **contato**
 (mais o rodapé) — e o restante respira em claro. É o que dá cadência à leitura.
 
-A exceção é a seção **problemas**, cujos três cards são azuis por decisão do
-cliente. Vale saber o trade-off antes de mexer: por ficar logo abaixo do hero,
-ela forma um segundo bloco azul quase colado nele, o que divide o peso visual da
-abertura da página. Se um dia a taxa de contato pelo hero preocupar, testar
-esses cards em claro é o primeiro experimento a fazer.
+As exceções são os cards azuis de **problemas** e os três cards principais de
+**serviços**, assim por decisão do cliente. Vale saber o trade-off antes de
+mexer: essas duas seções vêm logo abaixo do hero e formam com ele uma sequência
+de azul, o que divide o peso visual da abertura da página. Se um dia a taxa de
+contato pelo hero preocupar, testar esses cards em claro é o primeiro
+experimento a fazer.
+
+Na seção de serviços o azul vale só para os três cards principais: os quatro
+compactos seguem claros, e é isso que o seletor `:not(.compact)` garante.
 
 Fora isso, evite acrescentar blocos escuros: quanto mais azul saturado na
 página, menos o verde do botão de WhatsApp se destaca — e é ele que converte. A

@@ -150,6 +150,14 @@ svg { display: block; }
 .services { background: var(--white); }
 .services-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
 .service-card { grid-column: span 4; padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); transition: transform .2s, box-shadow .2s, border-color .2s; }
+/* Os três cards principais acompanham o azul da seção de problemas; os quatro
+   compactos seguem claros. Estas regras vêm antes de :hover de propósito — têm a
+   mesma especificidade, então o hover só continua vencendo se vier depois. */
+.service-card:not(.compact) { color: var(--white); border-color: var(--blue); background: linear-gradient(155deg, var(--blue), var(--blue-dark)); }
+.service-card:not(.compact) h3 { color: var(--white); }
+.service-card:not(.compact) p { color: var(--on-dark-200); }
+.service-card:not(.compact) .service-icon { color: var(--white); background: rgba(255,255,255,.12); }
+.service-card:not(.compact) .text-link { color: var(--accent-100); }
 .service-card:hover { transform: translateY(-4px); border-color: var(--line-hover); box-shadow: var(--shadow-sm); }
 .service-icon { width: 54px; height: 54px; margin-bottom: 24px; display: grid; place-items: center; border-radius: 15px; color: var(--blue); background: var(--ice-soft); }
 .service-icon svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
