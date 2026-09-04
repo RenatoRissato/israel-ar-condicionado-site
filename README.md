@@ -87,6 +87,26 @@ se precisar refazer, componha: `manutencao-ar-condicionado.webp` como fundo
 círculo e o texto. Mantenha 1200×630 e exporte em JPEG — WebP tem suporte
 irregular em previews de link.
 
+## Ritmo visual das seções
+
+Três seções escuras ancoram a página — **hero**, **diferenciais** e **contato**
+(mais o rodapé) — e todo o resto respira em claro. É o que dá cadência à leitura
+e mantém o hero como o momento de maior peso.
+
+Evite introduzir um quarto bloco escuro, sobretudo perto do hero: dois blocos
+azuis seguidos fazem o hero perder o posto de ponto mais forte, e quanto mais
+azul saturado na página, menos o verde do botão de WhatsApp se destaca. A cor
+tem três papéis separados:
+
+| Papel | Cor | Onde |
+|---|---|---|
+| Identidade | Azul | Apenas nas seções âncora |
+| Ação | Verde WhatsApp | Apenas nos botões de orçamento |
+| Conteúdo | Claro / branco | Todo o resto |
+
+Para destacar um card dentro de uma seção clara, prefira borda e sombra a fundo
+cheio — chama atenção sem criar massa escura.
+
 ## Acessibilidade
 
 O site já cobre: skip-link, `aria-expanded`/`aria-controls` no menu e no FAQ,
@@ -107,16 +127,20 @@ hexadecimais no corpo do arquivo — crie ou reaproveite uma variável.
 Duas escalas cobrem tudo que fica sobre fundo escuro, nomeadas por luminosidade
 decrescente (100 é o mais claro):
 
-| Escala | Níveis | Uso |
-|---|---|---|
-| `--on-dark-100…600` | 6 | Texto sobre hero, "why", contato e rodapé |
-| `--accent-100…400` | 4 | Ciano de destaque: eyebrows, ícones, links sobre azul |
+| Escala | Uso |
+|---|---|
+| `--on-dark-*` | Texto sobre hero, "diferenciais", contato e rodapé |
+| `--accent-*` | Ciano de destaque: eyebrows, ícones e rótulos sobre azul |
+
+Os números seguem a luminosidade, não a contagem: há lacunas onde um nível
+deixou de ser usado, e isso é intencional — nível novo só quando a hierarquia
+pedir, nunca renumerando os existentes.
 
 O design original tinha 19 tons aqui, muitos separados por diferenças
 imperceptíveis. Foram consolidados por distância perceptual (ΔE em CIELAB,
 limite 5 para texto e 4 para acento), escolhendo em cada grupo o tom de **maior
-contraste**, de modo que nenhum uso perdesse legibilidade — os 19 usos ficam
-entre 5,4:1 e 12,3:1 sobre seus fundos reais, todos acima de WCAG AA.
+contraste**, de modo que nenhum uso perdesse legibilidade. Todos ficam acima de
+WCAG AA sobre seus fundos reais.
 
 Ao escolher um nível, prefira o mais claro que couber na hierarquia: `100` para
 texto de destaque, `300` para corpo, `500`/`600` apenas para rótulos e notas
