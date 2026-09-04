@@ -145,20 +145,16 @@ svg { display: block; }
 .text-link { margin-top: auto; color: var(--blue); font-size: .86rem; font-weight: 850; text-decoration: none; }
 .text-link span { margin-left: 6px; transition: margin .2s; }
 .text-link:hover span { margin-left: 10px; }
-.problem-card .text-link, .service-blue .text-link { color: var(--accent-100); }
+.problem-card .text-link { color: var(--accent-100); }
 
 .services { background: var(--white); }
 .services-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
 .service-card { grid-column: span 4; padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); transition: transform .2s, box-shadow .2s, border-color .2s; }
 .service-card:hover { transform: translateY(-4px); border-color: var(--line-hover); box-shadow: var(--shadow-sm); }
-.service-card.service-blue { color: var(--white); border-color: var(--blue); background: var(--blue-dark); }
 .service-icon { width: 54px; height: 54px; margin-bottom: 24px; display: grid; place-items: center; border-radius: 15px; color: var(--blue); background: var(--ice-soft); }
 .service-icon svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .service-card h3 { margin: 0 0 10px; color: var(--blue-deep); font-size: 1.2rem; line-height: 1.25; }
 .service-card p { margin: 0 0 24px; color: var(--muted); }
-.service-blue h3 { color: var(--white); }
-.service-blue p { color: var(--on-dark-200); }
-.service-blue .service-icon { color: var(--white); background: rgba(255,255,255,.12); }
 .service-card.compact { grid-column: span 3; display: flex; gap: 17px; padding: 24px 21px; }
 .service-card.compact .service-icon { flex: 0 0 44px; width: 44px; height: 44px; margin: 0; }
 .service-card.compact .service-icon svg { width: 23px; height: 23px; }
