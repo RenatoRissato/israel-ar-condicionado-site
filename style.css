@@ -36,6 +36,7 @@
   --line-soft: #d1e7f6;
   --line-input: #cbdce8;
   --line-hover: #b5d8ef;
+  --line-outline: #b8d8ec;
 
   /* Estados */
   --danger: #b42318;
@@ -196,6 +197,8 @@ svg { display: block; }
 .reviews { background: var(--white); }
 .reviews-layout { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: 85px; }
 .reviews-copy > p { margin-bottom: 27px; }
+.button-outline { color: var(--blue-dark); border: 1px solid var(--line-outline); background: transparent; }
+.button-outline:hover { background: var(--ice); }
 .review-carousel { position: relative; overflow: hidden; padding: 42px 42px 46px; border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-sm); }
 /* Os slides ficam empilhados na mesma celula do grid: assim a altura e sempre a
    do maior depoimento e o bloco nao "pula" a cada troca. visibility (e nao
@@ -385,6 +388,9 @@ svg { display: block; }
 /* Alvos de toque no celular: os links de orçamento mediam 16-23px de altura e
    os do rodapé 24px, bem abaixo dos 44px que o dedo precisa para acertar. */
 @media (max-width: 820px) {
+  /* Estes dois botões aparecem só no desktop, a pedido do cliente. No celular o
+     contato continua pelo botão flutuante, pelo formulário e pelo de Serviços. */
+  .reviews-copy .button, .faq-intro .button { display: none; }
   .text-link { min-height: 44px; display: inline-flex; align-items: center; }
   .footer-grid > div:not(:first-child) a { min-height: 44px; display: flex; align-items: center; margin: 0; }
   .faq-item button { min-height: 60px; }

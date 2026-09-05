@@ -139,9 +139,6 @@ Os seis depoimentos da seção `#avaliacoes` são **avaliações reais** publica
 por clientes no perfil do Google, transcritas literalmente com nome e data. Não
 invente, edite ou complete nenhum texto ali: só entra o que a pessoa escreveu.
 
-O link para o perfil do Google não aparece mais na página (o botão foi removido
-a pedido do cliente). A URL segue no histórico do Git, caso um dia volte:
-`https://share.google/tDjbM4qzusvxBJrJK`.
 
 O rodízio é de 6 segundos (`CAROUSEL_DELAY` no `script.js`) e pausa sozinho
 quando o ponteiro está sobre o bloco, quando algo dentro dele recebe foco pelo
@@ -170,6 +167,9 @@ Ajustes que já estão no CSS e convém preservar ao editar:
   duas frases numa só.
 - **Cards curtos em 2 colunas** (`.service-card.compact` e `.why-grid`) abaixo de
   560px, com o ícone empilhado sobre o texto para caber nos ~170px da coluna.
+- **Dois botões são só de desktop**: "Ver avaliações no Google" e o de orçamento
+  dentro do FAQ ficam `display: none` abaixo de 820px. No celular o contato
+  segue pelo botão flutuante, pelo formulário e pelo botão da seção Serviços.
 
 ## Acessibilidade
 
