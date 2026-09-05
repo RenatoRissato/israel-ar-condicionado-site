@@ -80,7 +80,7 @@ Depois de publicar, valide em:
 
 ## Imagem do hero
 
-`hero-instalacao-israel.webp` (690px) e `hero-instalacao-israel-2x.webp` (1380px)
+`hero-instalacao-israel.webp` (700px) e `hero-instalacao-israel-2x.webp` (1122px)
 são servidas por `srcset`, para que telas de alta densidade recebam o dobro de
 pixels e as comuns baixem só a menor.
 
@@ -91,11 +91,10 @@ navegador baixar duas versões da imagem.
 O `sizes` vem das larguras de `.hero-image-wrap` no CSS (430px, 360px, 48vw,
 76vw). Ao mexer nesses breakpoints, atualize o `sizes` junto.
 
-> O arquivo original recebido já vinha bem comprimido (0,25 bits/pixel), o que
-> custou detalhe fino de forma irrecuperável. O que existe hoje foi recuperado
-> por reamostragem e realce; se algum dia aparecer a foto original em alta
-> resolução, regerar a partir dela dá um resultado melhor do que qualquer
-> tratamento sobre o arquivo atual.
+As duas saem do PNG original de 1122×1402 recebido do cliente. A 2x é a
+resolução nativa, sem upscale nem realce; a 1x é reduzida com um realce mínimo
+(sigma 0,6) que só compensa a suavização do downscale. Qualidade WebP 80 e 82 —
+os níveis acima foram testados e não mostraram diferença visível, só peso.
 
 ## Regerando a og:image
 
