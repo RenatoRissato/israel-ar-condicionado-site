@@ -125,29 +125,109 @@ function initFaq() {
   });
 }
 
+const CAROUSEL_DELAY = 6000;
+
 function initCarousel() {
+  const carousel = document.querySelector('.review-carousel');
   const slides = [...document.querySelectorAll('.review-slide')];
-  const buttons = [...document.querySelectorAll('.carousel-button')];
-  const status = document.querySelector('.carousel-status');
-  if (slides.length < 2 || !buttons.length) return;
+  const setas = [...document.querySelectorAll('.carousel-button[data-direction]')];
+  const dots = [...document.querySelectorAll('.carousel-dot')];
+  const toggle = document.querySelector('.carousel-toggle');
+  if (!carousel || slides.length < 2) return;
 
-  let current = 0;
+  let atual = 0;
+  let timer = null;
+  let pausadoPeloUsuario = false;
 
-  const showSlide = (index) => {
-    current = (index + slides.length) % slides.length;
-    slides.forEach((slide, slideIndex) => {
-      const active = slideIndex === current;
-      slide.hidden = !active;
-      slide.classList.toggle('is-active', active);
-    });
-    if (status) status.textContent = `${current + 1} / ${slides.length}`;
+  // A barra de progresso só existe quando há rotação automática: sob
+  // prefers-reduced-motion ela não teria o que mostrar.
+  let barra = null;
+  if (!reducedMotion) {
+    barra = document.createElement('div');
+    barra.className = 'carousel-progress';
+    barra.setAttribute('aria-hidden', 'true');
+    barra.innerHTML = '<span></span>';
+    carousel.style.setProperty('--carousel-delay', `${CAROUSEL_DELAY}ms`);
+    carousel.appendChild(barra);
+  }
+
+  const reiniciarBarra = () => {
+    if (!barra) return;
+    barra.classList.remove('is-running');
+    void barra.offsetWidth;            // força reflow: sem isso a animação não reinicia
+    if (timer) barra.classList.add('is-running');
   };
 
-  buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-      showSlide(current + (button.dataset.direction === 'next' ? 1 : -1));
+  const mostrar = (indice) => {
+    atual = (indice + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      const ativo = i === atual;
+      slide.classList.toggle('is-active', ativo);
+      slide.setAttribute('aria-hidden', String(!ativo));
+    });
+    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === atual));
+    reiniciarBarra();
+  };
+
+  const parar = () => {
+    clearInterval(timer);
+    timer = null;
+    if (barra) barra.classList.remove('is-running');
+  };
+
+  const rodar = () => {
+    if (timer || reducedMotion || pausadoPeloUsuario) return;
+    timer = setInterval(() => mostrar(atual + 1), CAROUSEL_DELAY);
+    reiniciarBarra();
+  };
+
+  setas.forEach((botao) => {
+    botao.addEventListener('click', () => {
+      mostrar(atual + (botao.dataset.direction === 'next' ? 1 : -1));
+      if (timer) { parar(); rodar(); }   // recomeça a contagem após ação manual
     });
   });
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      mostrar(Number(dot.dataset.goto));
+      if (timer) { parar(); rodar(); }
+    });
+  });
+
+  if (toggle) {
+    // WCAG 2.2.2: conteúdo que se move sozinho precisa de um jeito de parar.
+    if (reducedMotion) toggle.hidden = true;
+    toggle.addEventListener('click', () => {
+      pausadoPeloUsuario = !pausadoPeloUsuario;
+      toggle.setAttribute('aria-pressed', String(pausadoPeloUsuario));
+      toggle.setAttribute('aria-label', pausadoPeloUsuario ? 'Retomar troca automática' : 'Pausar troca automática');
+      toggle.firstElementChild.textContent = pausadoPeloUsuario ? '▶' : '❙❙';
+      if (pausadoPeloUsuario) parar();
+      else rodar();
+    });
+  }
+
+  // Pausa enquanto o visitante lê (ponteiro em cima) ou navega pelo teclado.
+  carousel.addEventListener('mouseenter', parar);
+  carousel.addEventListener('mouseleave', rodar);
+  carousel.addEventListener('focusin', parar);
+  carousel.addEventListener('focusout', (event) => {
+    if (!carousel.contains(event.relatedTarget)) rodar();
+  });
+
+  // Não gasta timer com a aba em segundo plano nem com o carrossel fora da tela.
+  document.addEventListener('visibilitychange', () => (document.hidden ? parar() : rodar()));
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entradas) => {
+      entradas.forEach((entrada) => (entrada.isIntersecting ? rodar() : parar()));
+    }, { threshold: .25 }).observe(carousel);
+  } else {
+    rodar();
+  }
+
+  mostrar(0);
 }
 
 function initQuoteForm() {

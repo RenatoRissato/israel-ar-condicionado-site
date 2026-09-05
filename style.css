@@ -199,17 +199,29 @@ svg { display: block; }
 .reviews-copy > p { margin-bottom: 27px; }
 .button-outline { color: var(--blue-dark); border: 1px solid var(--line-outline); background: transparent; }
 .button-outline:hover { background: var(--ice); }
-.review-carousel { position: relative; padding: 42px; border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-sm); }
-.review-slide { min-height: 245px; display: flex; flex-direction: column; }
-/* O JS alterna .is-active a cada troca; a animação dá a transição entre os slides.
-   Sob prefers-reduced-motion a regra global no fim do arquivo a neutraliza. */
-.review-slide.is-active { animation: review-fade .35s ease both; }
-@keyframes review-fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.review-carousel { position: relative; overflow: hidden; padding: 42px 42px 46px; border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-sm); }
+/* Os slides ficam empilhados na mesma celula do grid: assim a altura e sempre a
+   do maior depoimento e o bloco nao "pula" a cada troca. visibility (e nao
+   display) mantem a transicao e ainda tira o slide inativo dos leitores de tela. */
+.review-track { display: grid; }
+.review-slide { grid-area: 1 / 1; min-height: 245px; display: flex; flex-direction: column; opacity: 0; visibility: hidden; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease, visibility .5s; }
+.review-slide.is-active { opacity: 1; visibility: visible; transform: none; }
 .quote-mark { color: var(--blue); font-family: Georgia, serif; font-size: 5rem; line-height: .7; }
-.review-slide p { margin: 28px 0 24px; color: var(--text); font-size: 1.25rem; line-height: 1.5; }
-.review-slide strong { margin-top: auto; color: var(--blue-deep); }
-.review-slide > span { color: var(--muted); font-size: .82rem; }
+.review-slide p { margin: 22px 0 24px; color: var(--text); font-size: 1.25rem; line-height: 1.5; }
+.review-author { margin-top: auto; display: grid; gap: 3px; padding-top: 18px; border-top: 1px solid var(--line); }
+.review-author strong { color: var(--blue-deep); font-size: 1.02rem; }
+.review-author > span { color: var(--muted); font-size: .82rem; }
 .carousel-controls { margin-top: 30px; display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
+.carousel-dots { margin-right: auto; display: flex; align-items: center; gap: 8px; }
+.carousel-dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: var(--line-hover); transition: background .25s, transform .25s; }
+.carousel-dot.is-active { background: var(--blue); transform: scale(1.35); }
+.carousel-dot:hover { background: var(--blue); }
+.carousel-toggle { font-size: .72rem; letter-spacing: -.12em; }
+/* A barra mostra quanto falta para o proximo slide; o JS reinicia a animacao. */
+.carousel-progress { position: absolute; right: 42px; bottom: 0; left: 42px; height: 3px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.carousel-progress span { display: block; width: 100%; height: 100%; border-radius: 3px; background: var(--blue); transform-origin: left; transform: scaleX(0); }
+.carousel-progress.is-running span { animation: carousel-fill var(--carousel-delay, 6s) linear forwards; }
+@keyframes carousel-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 .carousel-button { width: 48px; height: 48px; border: 1px solid var(--line); border-radius: 50%; color: var(--blue-deep); background: var(--white); font-size: 1.15rem; }
 .carousel-button:hover { border-color: var(--blue); color: var(--blue); }
 .carousel-status { min-width: 52px; color: var(--muted); text-align: center; font-size: .8rem; font-weight: 800; }
@@ -359,7 +371,9 @@ svg { display: block; }
   .audience-options { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .why-card { min-height: auto; padding: 20px 16px; }
-  .review-carousel { padding: 28px 23px; }
+  .review-carousel { padding: 28px 23px 32px; }
+  .carousel-progress { right: 23px; left: 23px; }
+  .carousel-controls { gap: 9px; }
   .review-slide p { font-size: 1.05rem; }
   .faq-item button { min-height: 70px; }
   .quote-form { margin-inline: -3px; padding: 28px 20px; }

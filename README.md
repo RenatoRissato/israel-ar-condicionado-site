@@ -133,6 +133,27 @@ cor tem três papéis separados:
 Para destacar um card dentro de uma seção clara, prefira borda e sombra a fundo
 cheio — chama atenção sem criar massa escura.
 
+## Carrossel de avaliações
+
+Os seis depoimentos da seção `#avaliacoes` são **avaliações reais** publicadas
+por clientes no perfil do Google, transcritas literalmente com nome e data. Não
+invente, edite ou complete nenhum texto ali: só entra o que a pessoa escreveu.
+
+O rodízio é de 6 segundos (`CAROUSEL_DELAY` no `script.js`) e pausa sozinho
+quando o ponteiro está sobre o bloco, quando algo dentro dele recebe foco pelo
+teclado, quando a aba vai para segundo plano e quando o carrossel sai da tela.
+O botão de pausa existe por causa da WCAG 2.2.2 — conteúdo que se move sozinho
+precisa de um jeito de parar — e some sob `prefers-reduced-motion`, caso em que
+não há rotação automática nenhuma.
+
+Os slides ficam empilhados na mesma célula do grid, então a altura do bloco é a
+do maior depoimento e nada "pula" na troca. Ao acrescentar uma avaliação, copie
+um `<article class="review-slide">` e adicione um `.carousel-dot` com o
+`data-goto` seguinte.
+
+Não há estrelas nem `AggregateRating` no JSON-LD: as notas não foram conferidas
+uma a uma, e dado de avaliação é o tipo de coisa que não se estima.
+
 ## Mobile
 
 Ajustes que já estão no CSS e convém preservar ao editar:
