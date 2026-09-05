@@ -133,6 +133,19 @@ cor tem três papéis separados:
 Para destacar um card dentro de uma seção clara, prefira borda e sombra a fundo
 cheio — chama atenção sem criar massa escura.
 
+## Mobile
+
+Ajustes que já estão no CSS e convém preservar ao editar:
+
+- **Alvos de toque de 44px** (`.text-link`, links do rodapé, `.radio-group label`,
+  `.back-to-top`). Nos radios, a área clicável é o `<label>`, não o `<input>` —
+  por isso o label tem `min-height`.
+- **Separador da `.hero-note`**: em telas ≤560px o `<span>` vira `display: block`
+  com altura zero, quebrando a linha. Escondê-lo com `display: none` colaria as
+  duas frases numa só.
+- **Cards curtos em 2 colunas** (`.service-card.compact` e `.why-grid`) abaixo de
+  560px, com o ícone empilhado sobre o texto para caber nos ~170px da coluna.
+
 ## Acessibilidade
 
 O site já cobre: skip-link, `aria-expanded`/`aria-controls` no menu e no FAQ,
