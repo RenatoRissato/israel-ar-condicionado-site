@@ -135,9 +135,13 @@ cheio — chama atenção sem criar massa escura.
 
 ## Seção "Diferenciais"
 
-Cinco cards com foto mais um de orçamento. Cada card tem a imagem preenchendo o
-fundo, um gradiente escuro subindo da base, o ícone do compromisso (do sprite SVG
-que já está no `<head>`), título, descrição e um filete no rodapé.
+Cinco cards com foto mais um de orçamento. A foto ocupa o topo do card numa
+proporção fixa de 4:3, e o texto vem **abaixo** dela, sobre fundo próprio — nada
+é sobreposto à imagem. Cada bloco de texto traz o ícone do compromisso (do sprite
+SVG que já está no `<head>`), título, descrição e um filete no rodapé.
+
+A proporção fixa é o que mantém os cards alinhados na grade: as fotos de origem
+têm proporções diferentes (umas em retrato, outras em paisagem).
 
 **O texto é HTML, não faz parte da imagem.** As fotos em `assets/dif-*.webp` foram
 recortadas dos mockups acima da faixa onde havia texto sobreposto, justamente

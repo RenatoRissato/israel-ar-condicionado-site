@@ -192,18 +192,21 @@ svg { display: block; }
    escuro sobe da base para o texto ficar legível sobre qualquer parte dela. O
    texto é HTML de verdade, não parte da imagem, para poder ser lido e traduzido. */
 .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-.why-item { position: relative; overflow: hidden; min-height: 400px; display: flex; flex-direction: column; justify-content: flex-end; border: 1px solid rgba(255,255,255,.14); border-radius: 20px; background: var(--blue-dark); }
-.why-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.22,.61,.36,1); }
-.why-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,43,80,0) 14%, rgba(5,43,80,.45) 36%, rgba(5,40,74,.88) 56%, #042342 74%); }
-.why-item-body { position: relative; z-index: 2; padding: 0 26px 24px; }
-.why-item-body::after { content: ""; display: block; height: 1px; margin-top: 22px; background: rgba(255,255,255,.22); }
-.why-item svg { width: 27px; height: 27px; margin-bottom: 14px; fill: none; stroke: var(--accent-400); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.why-item { overflow: hidden; display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,.14); border-radius: 20px; background: rgba(255,255,255,.05); }
+/* A foto ocupa o topo inteiro do card, sem nada por cima: o texto vem depois,
+   sobre fundo próprio. A proporção fixa mantém os cards alinhados na grade. */
+.why-item-photo { aspect-ratio: 4 / 3; overflow: hidden; background: var(--blue-dark); }
+.why-item-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.22,.61,.36,1); }
+.why-item-body { display: flex; flex-direction: column; flex: 1; padding: 22px 24px 24px; }
+.why-item-body::after { content: ""; display: block; height: 1px; margin-top: auto; padding-top: 20px; border-bottom: 1px solid rgba(255,255,255,.18); }
+.why-item-body svg { width: 27px; height: 27px; margin-bottom: 12px; fill: none; stroke: var(--accent-400); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .why-item h3 { margin: 0 0 8px; font-size: 1.12rem; letter-spacing: -.015em; }
 .why-item p { margin: 0; color: var(--on-dark-300); font-size: .92rem; }
 /* A foto avança devagar quando o card recebe o ponteiro ou o foco do teclado. */
-.why-item:hover img, .why-item:focus-within img { transform: scale(1.07); }
+.why-item:hover .why-item-photo img, .why-item:focus-within .why-item-photo img { transform: scale(1.07); }
 
 .why-cta { display: flex; flex-direction: column; justify-content: center; min-height: 400px; padding: 32px; border: 1px solid rgba(255,255,255,.16); border-radius: 20px; background: linear-gradient(150deg, rgba(255,255,255,.11), rgba(255,255,255,.03)); }
+.why-cta > svg { width: 34px; height: 34px; margin-bottom: 16px; fill: none; stroke: var(--accent-400); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .why-cta h3 { margin: 0 0 10px; font-size: 1.32rem; letter-spacing: -.02em; }
 .why-cta p { margin: 0 0 24px; color: var(--on-dark-300); font-size: .95rem; }
 .why-cta .button { align-self: start; }
@@ -393,8 +396,7 @@ svg { display: block; }
   .audience-product img { height: 100px; }
   .audience-options { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr; gap: 14px; }
-  .why-item { min-height: 320px; }
-  .why-item-body { padding: 0 20px 20px; }
+  .why-item-body { padding: 20px; }
   .why-cta { min-height: auto; padding: 26px 20px; }
   .why-cta .button { align-self: stretch; }
   .review-carousel { padding: 28px 23px 32px; }
@@ -435,7 +437,7 @@ svg { display: block; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
   .reveal { opacity: 1; transform: none; }
   .why-grid > .reveal { transition-delay: 0s !important; }
-  .why-item:hover img, .why-item:focus-within img { transform: none; }
+  .why-item:hover .why-item-photo img, .why-item:focus-within .why-item-photo img { transform: none; }
 }
 
 .form-noscript { margin: 0 0 20px; padding: 14px 16px; border: 1px solid var(--warn-line); border-radius: 12px; background: var(--warn-bg); color: var(--warn-text); font-size: .87rem; line-height: 1.55; }
