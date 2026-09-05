@@ -105,6 +105,21 @@ se precisar refazer, componha: `manutencao-ar-condicionado.webp` como fundo
 círculo e o texto. Mantenha 1200×630 e exporte em JPEG — WebP tem suporte
 irregular em previews de link.
 
+## Rótulos de seção
+
+Só duas seções têm rótulo acima do título: o topo da página ("Climatização em
+Limeira e região") e as avaliações ("Avaliações no Google"). Ambos dizem algo que
+o título não diz — a região atendida e a origem dos depoimentos.
+
+As outras seis seções perderam o rótulo que tinham. Eles apenas repetiam o
+título logo abaixo ("Serviços" sobre "Soluções completas para o seu
+ar-condicionado", "Tire suas dúvidas" sobre "Perguntas frequentes") e faziam a
+página parecer gerada por template.
+
+O estilo é frase corrida, sem traço decorativo e sem caixa alta. **Ao criar uma
+seção nova, não adicione rótulo por hábito**: só se ele informar algo que o
+título não cobre.
+
 ## Ritmo visual das seções
 
 Três seções escuras ancoram a página — **hero**, **diferenciais** e **contato**

@@ -100,8 +100,10 @@ svg { display: block; }
 .hero-orb-two { top: 220px; right: 110px; width: 190px; height: 190px; }
 .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 74px; }
 .hero-copy { padding-bottom: 120px; }
-.eyebrow { margin: 0 0 18px; display: flex; align-items: center; gap: 10px; color: var(--accent-200); font-size: .78rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
-.eyebrow span { width: 30px; height: 2px; border-radius: 4px; background: currentColor; }
+/* Rótulo de seção: frase corrida, sem traço e sem caixa alta. Só sobrou onde diz
+   algo que o título não diz — a região atendida e a origem das avaliações. Nas
+   demais seções o título basta, e repeti-lo num rótulo era só ruído. */
+.eyebrow { margin: 0 0 12px; color: var(--accent-200); font-size: 1rem; font-weight: 700; letter-spacing: -.01em; }
 .eyebrow-blue { color: var(--blue); }
 .eyebrow-light { color: var(--accent-300); }
 .hero h1 { max-width: 720px; margin: 0 0 24px; font-size: clamp(2.75rem, 5.2vw, 5rem); line-height: .98; letter-spacing: -.055em; }
@@ -385,7 +387,7 @@ svg { display: block; }
   .trust-strip { width: 100%; }
   .trust-strip span { font-size: .82rem; }
   .trust-strip strong { font-size: .95rem; }
-  .eyebrow { font-size: .85rem; }
+  .eyebrow { font-size: .94rem; }
   .section-heading { margin-bottom: 37px; }
   .section-heading h2, .audience-copy h2, .reviews-copy h2, .faq-intro h2, .contact-copy h2 { font-size: clamp(1.9rem, 9.5vw, 2.65rem); }
   .problem-card { padding: 27px; }
