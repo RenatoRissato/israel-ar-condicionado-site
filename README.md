@@ -133,6 +133,22 @@ cor tem três papéis separados:
 Para destacar um card dentro de uma seção clara, prefira borda e sombra a fundo
 cheio — chama atenção sem criar massa escura.
 
+## Seção "Diferenciais"
+
+Os seis itens eram cards iguais numerados de 01 a 06. A numeração saiu porque
+não são uma sequência — são atributos paralelos, e numerá-los sugeria uma ordem
+que não existe. Cada um passou a levar o ícone do que promete, tirado do sprite
+SVG que já está no `<head>`.
+
+Os cinco compromissos não têm caixa, só um filete no topo. O peso visual fica
+reservado ao card de orçamento, o único com fundo e borda próprios — ele já era
+uma chamada para ação disfarçada de diferencial ("Explique pelo WhatsApp o que
+você precisa") e agora é uma de verdade, com botão.
+
+Ao acrescentar um item, copie um `.why-item` e escolha um ícone que descreva o
+compromisso. Mantenha um único elemento com fundo na seção: se tudo tiver
+destaque, nada tem.
+
 ## Carrossel de avaliações
 
 Os seis depoimentos da seção `#avaliacoes` são **avaliações reais** publicadas

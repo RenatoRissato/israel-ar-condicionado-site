@@ -188,11 +188,18 @@ svg { display: block; }
 .why { color: var(--white); background: var(--blue-deep); }
 .why .section-heading h2 { color: var(--white); }
 .why .section-heading > p:last-child { color: var(--on-dark-300); }
-.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.why-card { position: relative; min-height: 210px; padding: 29px; border: 1px solid rgba(255,255,255,.13); border-radius: 15px; background: rgba(255,255,255,.055); }
-.why-card > span { color: var(--accent-400); font-size: .74rem; font-weight: 900; letter-spacing: .12em; }
-.why-card h3 { margin: 28px 0 9px; font-size: 1.12rem; }
-.why-card p { margin: 0; color: var(--on-dark-400); font-size: .91rem; }
+/* Os compromissos não são uma sequência, então perderam a numeração 01-06: cada
+   um ganha o ícone do que promete. Sem caixa em volta — só um filete no topo —
+   para o peso visual ficar no card de ação, o único com fundo próprio. */
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 34px; }
+.why-item { padding: 26px 4px 30px; border-top: 1px solid rgba(255,255,255,.16); }
+.why-item svg { width: 27px; height: 27px; margin-bottom: 18px; fill: none; stroke: var(--accent-400); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.why-item h3 { margin: 0 0 8px; font-size: 1.1rem; letter-spacing: -.015em; }
+.why-item p { margin: 0; max-width: 34ch; color: var(--on-dark-400); font-size: .92rem; }
+.why-cta { display: flex; flex-direction: column; justify-content: center; padding: 30px; border: 1px solid rgba(255,255,255,.16); border-radius: 18px; background: linear-gradient(150deg, rgba(255,255,255,.1), rgba(255,255,255,.03)); }
+.why-cta h3 { margin: 0 0 8px; font-size: 1.22rem; letter-spacing: -.02em; }
+.why-cta p { margin: 0 0 22px; color: var(--on-dark-300); font-size: .92rem; }
+.why-cta .button { align-self: start; }
 
 .reviews { background: var(--white); }
 .reviews-layout { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: 85px; }
@@ -325,7 +332,7 @@ svg { display: block; }
   .audience-grid { gap: 45px; }
   .audience-visual { max-width: 650px; }
   .audience-visual > img { width: 91%; }
-  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: repeat(2, 1fr); gap: 2px 26px; }
   .faq-intro { position: static; }
   .footer-grid { grid-template-columns: 1.2fr 1fr; }
   .footer-grid > div:last-child { grid-column: 1 / -1; }
@@ -369,8 +376,10 @@ svg { display: block; }
   .audience-product { width: 58%; }
   .audience-product img { height: 100px; }
   .audience-options { grid-template-columns: 1fr; }
-  .why-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .why-card { min-height: auto; padding: 20px 16px; }
+  .why-grid { grid-template-columns: repeat(2, 1fr); gap: 2px 20px; }
+  .why-cta { grid-column: 1 / -1; margin-top: 14px; padding: 24px 20px; }
+  .why-cta .button { align-self: stretch; }
+  .why-item { padding: 20px 2px 22px; }
   .review-carousel { padding: 28px 23px 32px; }
   .carousel-progress { right: 23px; left: 23px; }
   .carousel-controls { gap: 9px; }
