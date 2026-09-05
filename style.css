@@ -396,6 +396,10 @@ svg { display: block; }
   .reviews-copy .button, .faq-intro .button { display: none; }
   .reviews-copy > p:last-of-type, .faq-intro > p:last-of-type { margin-bottom: 0; }
   .reviews-layout, .faq-layout { gap: 34px; }
+  /* Empilhado em uma coluna, este botão sobrava à esquerda do bloco. O .button é
+     inline-flex, e margem automática não centraliza elemento inline: por isso o
+     display vira flex, com fit-content para ele não esticar até a borda. */
+  .audience-copy .button { display: flex; width: fit-content; margin-inline: auto; }
   .text-link { min-height: 44px; display: inline-flex; align-items: center; }
   .footer-grid > div:not(:first-child) a { min-height: 44px; display: flex; align-items: center; margin: 0; }
   .faq-item button { min-height: 60px; }
