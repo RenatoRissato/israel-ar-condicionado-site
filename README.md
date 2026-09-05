@@ -170,6 +170,10 @@ Ajustes que já estão no CSS e convém preservar ao editar:
 - **Dois botões são só de desktop**: "Ver avaliações no Google" e o de orçamento
   dentro do FAQ ficam `display: none` abaixo de 820px. No celular o contato
   segue pelo botão flutuante, pelo formulário e pelo botão da seção Serviços.
+  Junto com o `display: none` vão o `margin-bottom: 0` no parágrafo acima e um
+  `gap` menor — a margem existia para separar o texto do botão e, sem ele,
+  sobraria como espaço morto. Ao esconder qualquer outro elemento por
+  breakpoint, confira o espaçamento que ficou em volta.
 
 ## Acessibilidade
 

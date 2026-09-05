@@ -389,8 +389,13 @@ svg { display: block; }
    os do rodapé 24px, bem abaixo dos 44px que o dedo precisa para acertar. */
 @media (max-width: 820px) {
   /* Estes dois botões aparecem só no desktop, a pedido do cliente. No celular o
-     contato continua pelo botão flutuante, pelo formulário e pelo de Serviços. */
+     contato continua pelo botão flutuante, pelo formulário e pelo de Serviços.
+     Os 27px de margem existiam para separar o texto do botão: sem ele, sobrariam
+     como espaço morto, então zeram junto. :last-of-type evita atingir o eyebrow,
+     que também é um <p> e precisa da margem dele. */
   .reviews-copy .button, .faq-intro .button { display: none; }
+  .reviews-copy > p:last-of-type, .faq-intro > p:last-of-type { margin-bottom: 0; }
+  .reviews-layout, .faq-layout { gap: 34px; }
   .text-link { min-height: 44px; display: inline-flex; align-items: center; }
   .footer-grid > div:not(:first-child) a { min-height: 44px; display: flex; align-items: center; margin: 0; }
   .faq-item button { min-height: 60px; }
