@@ -188,37 +188,42 @@ svg { display: block; }
 .why { color: var(--white); background: var(--blue-deep); }
 .why .section-heading h2 { color: var(--white); }
 .why .section-heading > p:last-child { color: var(--on-dark-300); }
-/* Cada compromisso é um card com foto: a imagem preenche o card e o gradiente
-   escuro sobe da base para o texto ficar legível sobre qualquer parte dela. O
-   texto é HTML de verdade, não parte da imagem, para poder ser lido e traduzido. */
-.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-.why-item { overflow: hidden; display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,.14); border-radius: 20px; background: rgba(255,255,255,.05); }
-/* A foto ocupa o topo inteiro do card, sem nada por cima: o texto vem depois,
-   sobre fundo próprio. A proporção fixa mantém os cards alinhados na grade. */
-.why-item-photo { aspect-ratio: 4 / 3; overflow: hidden; background: var(--blue-dark); }
-.why-item-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.22,.61,.36,1); }
-.why-item-body { display: flex; flex-direction: column; flex: 1; padding: 22px 24px 24px; }
-.why-item-body::after { content: ""; display: block; height: 1px; margin-top: auto; padding-top: 20px; border-bottom: 1px solid rgba(255,255,255,.18); }
-.why-item-body svg { width: 27px; height: 27px; margin-bottom: 12px; fill: none; stroke: var(--accent-400); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.why-item h3 { margin: 0 0 8px; font-size: 1.12rem; letter-spacing: -.015em; }
-.why-item p { margin: 0; color: var(--on-dark-300); font-size: .92rem; }
-/* A foto avança devagar quando o card recebe o ponteiro ou o foco do teclado. */
-.why-item:hover .why-item-photo img, .why-item:focus-within .why-item-photo img { transform: scale(1.07); }
+/* Compromissos em formato de stories: cards verticais que rolam na horizontal.
+   O scroll-snap nativo faz o swipe no celular e o encaixe dos cards; as setas do
+   desktop apenas empurram esse mesmo scroll, então há um só mecanismo para os dois. */
+.stories { position: relative; }
+.stories-track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 2px; padding: 6px 2px 20px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.stories-track::-webkit-scrollbar { display: none; }
+.stories-track:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; border-radius: 24px; }
 
-.why-cta { display: flex; flex-direction: column; justify-content: center; min-height: 400px; padding: 32px; border: 1px solid rgba(255,255,255,.16); border-radius: 20px; background: linear-gradient(150deg, rgba(255,255,255,.11), rgba(255,255,255,.03)); }
-.why-cta > svg { width: 34px; height: 34px; margin-bottom: 16px; fill: none; stroke: var(--accent-400); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.why-cta h3 { margin: 0 0 10px; font-size: 1.32rem; letter-spacing: -.02em; }
-.why-cta p { margin: 0 0 24px; color: var(--on-dark-300); font-size: .95rem; }
-.why-cta .button { align-self: start; }
+.story { position: relative; flex: 0 0 auto; width: clamp(250px, 24vw, 310px); aspect-ratio: 9 / 15; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; scroll-snap-align: start; border: 1px solid rgba(255,255,255,.16); border-radius: 22px; background: var(--blue-dark); box-shadow: 0 16px 40px rgba(2,20,40,.42); transition: transform .45s cubic-bezier(.22,.61,.36,1), box-shadow .45s ease, border-color .3s ease; }
+.story img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.22,.61,.36,1); }
+/* O degradê sobe da base e cobre a área do texto; no topo a foto fica limpa. */
+.story::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4,28,54,.12) 0%, rgba(4,28,54,0) 26%, rgba(5,40,74,.62) 52%, rgba(4,30,58,.93) 76%, #04203e 100%); }
+.story-body { position: relative; z-index: 2; padding: 0 22px 24px; }
+.story-icon { width: 42px; height: 42px; margin-bottom: 14px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.28); border-radius: 13px; background: rgba(255,255,255,.12); backdrop-filter: blur(6px); }
+.story-icon svg { width: 21px; height: 21px; fill: none; stroke: var(--accent-400); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.story h3 { margin: 0 0 7px; font-size: 1.08rem; line-height: 1.25; letter-spacing: -.02em; }
+.story p { margin: 0; color: var(--on-dark-300); font-size: .87rem; line-height: 1.5; }
 
-/* Entrada em cascata: os cards surgem em sequência quando a seção aparece, em vez
-   de todos ao mesmo tempo. Os atrasos são curtos para não segurar a leitura. */
-.why-grid > .reveal:nth-child(1) { transition-delay: .00s; }
-.why-grid > .reveal:nth-child(2) { transition-delay: .07s; }
-.why-grid > .reveal:nth-child(3) { transition-delay: .14s; }
-.why-grid > .reveal:nth-child(4) { transition-delay: .21s; }
-.why-grid > .reveal:nth-child(5) { transition-delay: .28s; }
-.why-grid > .reveal:nth-child(6) { transition-delay: .35s; }
+/* O card no centro do trilho ganha um leve avanço — é o que dá o ritmo de stories. */
+.story.is-current { border-color: rgba(122,208,250,.5); box-shadow: 0 22px 54px rgba(2,20,40,.55); }
+.story:hover, .story:focus-within { transform: translateY(-8px); box-shadow: 0 28px 60px rgba(2,20,40,.6); }
+.story:hover img, .story:focus-within img { transform: scale(1.08); }
+
+.story-nav { position: absolute; top: calc(50% - 14px); z-index: 3; width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.28); border-radius: 50%; color: var(--white); background: rgba(6,45,84,.82); backdrop-filter: blur(8px); transition: background .25s, opacity .25s, transform .25s; }
+.story-nav svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+.story-nav:hover { background: var(--blue); transform: scale(1.07); }
+.story-nav[disabled] { opacity: 0; pointer-events: none; }
+.story-nav-prev { left: -22px; }
+.story-nav-next { right: -22px; }
+
+.stories-dots { margin-top: 4px; display: flex; justify-content: center; gap: 9px; }
+.story-dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.28); transition: width .3s ease, background .3s ease; }
+.story-dot.is-active { width: 24px; border-radius: 5px; background: var(--accent-400); }
+.story-dot:hover { background: var(--accent-300); }
+
+.why .center-action { margin-top: 34px; }
 
 .reviews { background: var(--white); }
 .reviews-layout { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: 85px; }
@@ -351,7 +356,6 @@ svg { display: block; }
   .audience-grid { gap: 45px; }
   .audience-visual { max-width: 650px; }
   .audience-visual > img { width: 91%; }
-  .why-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
   .faq-intro { position: static; }
   .footer-grid { grid-template-columns: 1.2fr 1fr; }
   .footer-grid > div:last-child { grid-column: 1 / -1; }
@@ -395,10 +399,10 @@ svg { display: block; }
   .audience-product { width: 58%; }
   .audience-product img { height: 100px; }
   .audience-options { grid-template-columns: 1fr; }
-  .why-grid { grid-template-columns: 1fr; gap: 14px; }
-  .why-item-body { padding: 20px; }
-  .why-cta { min-height: auto; padding: 26px 20px; }
-  .why-cta .button { align-self: stretch; }
+  /* Um card por vez, deixando ~18% do próximo à mostra para indicar que há mais. */
+  .stories-track { gap: 14px; padding-bottom: 16px; }
+  .story { width: min(78vw, 300px); aspect-ratio: 9 / 15.5; scroll-snap-align: start; }
+  .story-nav { display: none; }
   .review-carousel { padding: 28px 23px 32px; }
   .carousel-progress { right: 23px; left: 23px; }
   .carousel-controls { gap: 9px; }
@@ -436,8 +440,6 @@ svg { display: block; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
   .reveal { opacity: 1; transform: none; }
-  .why-grid > .reveal { transition-delay: 0s !important; }
-  .why-item:hover .why-item-photo img, .why-item:focus-within .why-item-photo img { transform: none; }
 }
 
 .form-noscript { margin: 0 0 20px; padding: 14px 16px; border: 1px solid var(--warn-line); border-radius: 12px; background: var(--warn-bg); color: var(--warn-text); font-size: .87rem; line-height: 1.55; }

@@ -230,6 +230,73 @@ function initCarousel() {
   mostrar(0);
 }
 
+function initStories() {
+  const trilho = document.querySelector('.stories-track');
+  const cards = [...document.querySelectorAll('.story')];
+  const dots = [...document.querySelectorAll('.story-dot')];
+  const anterior = document.querySelector('.story-nav-prev');
+  const proximo = document.querySelector('.story-nav-next');
+  if (!trilho || cards.length < 2) return;
+
+  // O passo é a distância real entre dois cards, então funciona em qualquer
+  // largura sem repetir no JS os valores que já estão no CSS.
+  const passo = () => (cards[1].offsetLeft - cards[0].offsetLeft) || cards[0].offsetWidth;
+
+  const sincronizar = () => {
+    // O card "atual" é o que está encostado na borda esquerda do trilho, que é
+    // onde o snap encaixa. Usar o mais central deixaria o indicador começar no
+    // meio da lista quando vários cards cabem na tela ao mesmo tempo.
+    let atual = 0;
+    let menor = Infinity;
+    cards.forEach((card, i) => {
+      const d = Math.abs(card.offsetLeft - trilho.scrollLeft);
+      if (d < menor) { menor = d; atual = i; }
+    });
+
+    cards.forEach((card, i) => card.classList.toggle('is-current', i === atual));
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('is-active', i === atual);
+      dot.setAttribute('aria-current', String(i === atual));
+    });
+
+    // 2px de folga: o scrollLeft nem sempre fecha exatamente no limite.
+    const fim = trilho.scrollWidth - trilho.clientWidth - 2;
+    if (anterior) anterior.disabled = trilho.scrollLeft <= 2;
+    if (proximo) proximo.disabled = trilho.scrollLeft >= fim;
+  };
+
+  const irPara = (deslocamento) => {
+    trilho.scrollBy({ left: deslocamento, behavior: reducedMotion ? 'auto' : 'smooth' });
+  };
+
+  if (anterior) anterior.addEventListener('click', () => irPara(-passo()));
+  if (proximo) proximo.addEventListener('click', () => irPara(passo()));
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const alvo = cards[Number(dot.dataset.goto)];
+      if (!alvo) return;
+      trilho.scrollTo({ left: alvo.offsetLeft, behavior: reducedMotion ? 'auto' : 'smooth' });
+    });
+  });
+
+  // Setas do teclado navegam quando o trilho está focado.
+  trilho.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') { event.preventDefault(); irPara(passo()); }
+    if (event.key === 'ArrowLeft') { event.preventDefault(); irPara(-passo()); }
+  });
+
+  let agendado = false;
+  trilho.addEventListener('scroll', () => {
+    if (agendado) return;
+    agendado = true;
+    requestAnimationFrame(() => { agendado = false; sincronizar(); });
+  }, { passive: true });
+
+  window.addEventListener('resize', sincronizar);
+  sincronizar();
+}
+
 function initQuoteForm() {
   const form = document.getElementById('orcamento-form');
   if (!form) return;
@@ -328,6 +395,7 @@ initScrollBehaviour();
 initScrollSpy();
 initFaq();
 initCarousel();
+initStories();
 initQuoteForm();
 initFooterYear();
 initReveal();

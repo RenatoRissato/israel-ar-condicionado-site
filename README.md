@@ -133,33 +133,34 @@ cor tem três papéis separados:
 Para destacar um card dentro de uma seção clara, prefira borda e sombra a fundo
 cheio — chama atenção sem criar massa escura.
 
-## Seção "Diferenciais"
+## Seção "Diferenciais" (stories)
 
-Cinco cards com foto mais um de orçamento. A foto ocupa o topo do card numa
-proporção fixa de 4:3, e o texto vem **abaixo** dela, sobre fundo próprio — nada
-é sobreposto à imagem. Cada bloco de texto traz o ícone do compromisso (do sprite
-SVG que já está no `<head>`), título, descrição e um filete no rodapé.
+Cinco cards verticais em proporção 9:15 que rolam na horizontal, no formato de
+stories. O CTA de orçamento fica logo abaixo, fora do trilho, para os cards
+seguirem só com conteúdo.
 
-A proporção fixa é o que mantém os cards alinhados na grade: as fotos de origem
-têm proporções diferentes (umas em retrato, outras em paisagem).
+**Um mecanismo só para desktop e celular:** o trilho é um `overflow-x: auto` com
+`scroll-snap-type: x mandatory` e `scroll-snap-align: start` nos cards. O swipe
+do dedo, a barra de rolagem, as setas e as teclas ← → empurram esse mesmo scroll
+— não há biblioteca nem cálculo de arrasto no JS.
 
-**O texto é HTML, não faz parte da imagem.** As fotos em `assets/dif-*.webp` foram
-recortadas dos mockups acima da faixa onde havia texto sobreposto, justamente
-para que o conteúdo continuasse selecionável, traduzível e legível por leitores
-de tela. Ao trocar uma foto, use uma imagem sem texto embutido.
+- **Desktop**: largura `clamp(250px, 24vw, 310px)`, então cabem ~3,5 cards e
+  sempre há um cortado na borda, indicando que há mais. Setas nas laterais sobre
+  o trilho, que somem sozinhas nos extremos (`disabled`).
+- **Celular**: um card por vez em `min(78vw, 300px)`, deixando uma fatia do
+  próximo à mostra. As setas somem; ficam os indicadores.
 
-A numeração 01-06 que existia antes foi removida: os itens não formam sequência,
-e numerá-los sugeria uma ordem que não existe.
+O JS (`initStories`) só observa: no `scroll`, descobre qual card está encaixado
+na borda esquerda e sincroniza o card destacado, os indicadores e o estado das
+setas. O passo das setas é medido pela distância real entre dois cards
+(`cards[1].offsetLeft - cards[0].offsetLeft`), então o CSS pode mudar de largura
+sem que o JS precise saber.
 
-Duas animações, ambas desligadas sob `prefers-reduced-motion`:
+Sob `prefers-reduced-motion` o zoom e a elevação não acontecem e a rolagem passa
+a ser instantânea.
 
-- **Entrada em cascata** — `transition-delay` crescente por `nth-child`, de 0 a
-  0,35s, para os cards aparecerem em sequência em vez de todos de uma vez.
-- **Zoom na foto** — a imagem avança 7% no hover e também no `:focus-within`,
-  para quem navega pelo teclado ver a mesma resposta.
-
-As fotos vêm dos mockups em 482-722px de largura. Isso cobre bem 1x, mas fica no
-limite para telas 2x: se aparecerem versões em resolução maior, vale substituir.
+O trilho tem `tabindex="0"` e `aria-roledescription="carrossel"`: quem navega
+pelo teclado foca nele e usa as setas.
 
 ## Carrossel de avaliações
 
