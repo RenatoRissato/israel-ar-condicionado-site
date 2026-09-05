@@ -135,19 +135,27 @@ cheio — chama atenção sem criar massa escura.
 
 ## Seção "Diferenciais"
 
-Os seis itens eram cards iguais numerados de 01 a 06. A numeração saiu porque
-não são uma sequência — são atributos paralelos, e numerá-los sugeria uma ordem
-que não existe. Cada um passou a levar o ícone do que promete, tirado do sprite
-SVG que já está no `<head>`.
+Cinco cards com foto mais um de orçamento. Cada card tem a imagem preenchendo o
+fundo, um gradiente escuro subindo da base, o ícone do compromisso (do sprite SVG
+que já está no `<head>`), título, descrição e um filete no rodapé.
 
-Os cinco compromissos não têm caixa, só um filete no topo. O peso visual fica
-reservado ao card de orçamento, o único com fundo e borda próprios — ele já era
-uma chamada para ação disfarçada de diferencial ("Explique pelo WhatsApp o que
-você precisa") e agora é uma de verdade, com botão.
+**O texto é HTML, não faz parte da imagem.** As fotos em `assets/dif-*.webp` foram
+recortadas dos mockups acima da faixa onde havia texto sobreposto, justamente
+para que o conteúdo continuasse selecionável, traduzível e legível por leitores
+de tela. Ao trocar uma foto, use uma imagem sem texto embutido.
 
-Ao acrescentar um item, copie um `.why-item` e escolha um ícone que descreva o
-compromisso. Mantenha um único elemento com fundo na seção: se tudo tiver
-destaque, nada tem.
+A numeração 01-06 que existia antes foi removida: os itens não formam sequência,
+e numerá-los sugeria uma ordem que não existe.
+
+Duas animações, ambas desligadas sob `prefers-reduced-motion`:
+
+- **Entrada em cascata** — `transition-delay` crescente por `nth-child`, de 0 a
+  0,35s, para os cards aparecerem em sequência em vez de todos de uma vez.
+- **Zoom na foto** — a imagem avança 7% no hover e também no `:focus-within`,
+  para quem navega pelo teclado ver a mesma resposta.
+
+As fotos vêm dos mockups em 482-722px de largura. Isso cobre bem 1x, mas fica no
+limite para telas 2x: se aparecerem versões em resolução maior, vale substituir.
 
 ## Carrossel de avaliações
 
