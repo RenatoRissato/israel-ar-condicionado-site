@@ -387,7 +387,8 @@ svg { display: block; }
   .brand span { font-size: 1.02rem; }
   .hero { padding-top: 112px; }
   .hero-copy { text-align: left; }
-  .hero h1 { font-size: clamp(2.35rem, 12vw, 3.6rem); }
+  /* ~35px em telas de 390px: encurta o bloco sem perder o peso do titulo. */
+  .hero h1 { font-size: clamp(2.05rem, 9vw, 2.35rem); line-height: 1.05; letter-spacing: -.02em; }
   .hero-lead { font-size: 1rem; }
   .button-large { width: 100%; padding-inline: 15px; font-size: .92rem; }
   .hero-note { font-size: .88rem; line-height: 1.6; }
