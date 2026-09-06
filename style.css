@@ -111,6 +111,10 @@ svg { display: block; }
 .button-primary { background: var(--whatsapp); color: var(--white); box-shadow: 0 14px 34px rgba(16, 166, 86, .28); }
 .button-primary:hover { background: var(--whatsapp-dark); box-shadow: 0 18px 42px rgba(16, 166, 86, .38); }
 .button-large { min-height: 60px; padding: 17px 25px; }
+/* Alternativa discreta ao CTA: quem prefere telefone acha sem procurar. */
+.hero-call { margin: 12px 0 0; color: var(--on-dark-400); font-size: .88rem; }
+.hero-call a { color: var(--white); font-weight: 700; text-underline-offset: 3px; }
+.hero-call a:hover { text-decoration-thickness: 2px; }
 .hero-note { margin: 16px 0 0; color: var(--on-dark-300); font-size: .83rem; font-weight: 700; }
 .hero-note span { margin-inline: 8px; color: var(--accent-400); }
 .hero-visual { position: relative; align-self: end; min-height: 636px; }
