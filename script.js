@@ -300,6 +300,23 @@ function initStories() {
   sincronizar();
 }
 
+function initFloatingCta() {
+  const flutuante = document.querySelector('.floating-whatsapp');
+  const hero = document.querySelector('.hero');
+  if (!flutuante || !hero || !('IntersectionObserver' in window)) return;
+
+  // Começa escondido só quando há como observar o hero. Se o IntersectionObserver
+  // não existir, a função sai antes e o botão permanece visível.
+  flutuante.classList.add('is-hidden');
+
+  new IntersectionObserver((entradas) => {
+    entradas.forEach((entrada) => {
+      // Some enquanto qualquer parte do hero estiver à vista: ali o CTA já existe.
+      flutuante.classList.toggle('is-hidden', entrada.isIntersecting);
+    });
+  }, { threshold: 0 }).observe(hero);
+}
+
 function initQuoteForm() {
   const form = document.getElementById('orcamento-form');
   if (!form) return;
@@ -399,6 +416,7 @@ initScrollSpy();
 initFaq();
 initCarousel();
 initStories();
+initFloatingCta();
 initQuoteForm();
 initFooterYear();
 initReveal();
