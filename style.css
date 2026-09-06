@@ -115,8 +115,11 @@ svg { display: block; }
 .hero-call { margin: 12px 0 0; color: var(--on-dark-400); font-size: .88rem; }
 .hero-call a { color: var(--white); font-weight: 700; text-underline-offset: 3px; }
 .hero-call a:hover { text-decoration-thickness: 2px; }
-.hero-note { margin: 16px 0 0; color: var(--on-dark-300); font-size: .83rem; font-weight: 700; }
-.hero-note span { margin-inline: 8px; color: var(--accent-400); }
+/* Branco com opacidade em vez de cinza-azulado: o contraste sobre o hero estava
+   fraco demais para texto pequeno. O check substitui o separador. */
+.hero-note { margin: 18px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px 22px; }
+.hero-note li { display: flex; align-items: center; gap: 8px; color: var(--white); opacity: .85; font-size: .88rem; font-weight: 400; }
+.hero-note svg { flex: 0 0 auto; width: 17px; height: 17px; fill: none; stroke: var(--accent-400); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .hero-visual { position: relative; align-self: end; min-height: 636px; }
 .hero-image-wrap { position: absolute; right: 10px; bottom: 0; width: 430px; height: 610px; overflow: hidden; border-radius: 210px 210px 0 0; box-shadow: var(--shadow-lg); }
 .hero-image-wrap::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); border-radius: inherit; }
@@ -394,9 +397,9 @@ svg { display: block; }
   .hero h1 { font-size: clamp(2.05rem, 9vw, 2.35rem); line-height: 1.05; letter-spacing: -.02em; }
   .hero-lead { font-size: 1rem; }
   .button-large { width: 100%; padding-inline: 15px; font-size: .92rem; }
-  .hero-note { font-size: .88rem; line-height: 1.6; }
-  /* O separador vira quebra de linha: escondido, as duas frases colariam. */
-  .hero-note span { display: block; width: 0; height: 0; margin: 0; overflow: hidden; }
+  .hero-note li { font-size: .88rem; }
+  .hero-note { gap: 8px 0; }
+  .hero-note li { flex: 0 0 100%; }
   .hero-visual { min-height: 465px; margin-top: 5px; }
   .hero-image-wrap { right: 0; width: 76%; height: 460px; }
   .hero-badge { width: 215px; padding: 13px; }
