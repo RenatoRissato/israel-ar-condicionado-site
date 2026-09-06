@@ -105,6 +105,23 @@ se precisar refazer, componha: `manutencao-ar-condicionado.webp` como fundo
 círculo e o texto. Mantenha 1200×630 e exporte em JPEG — WebP tem suporte
 irregular em previews de link.
 
+## Acordeão do FAQ
+
+Todas as perguntas começam fechadas — nenhuma vem aberta no carregamento.
+
+A altura é animada com `grid-template-rows: 0fr → 1fr`, técnica que interpola até
+a altura real do texto sem precisar de valor fixo. Por isso a resposta **não usa
+o atributo `hidden`**: ele cortaria a transição. Quem esconde o conteúdo fechado
+dos leitores de tela é `visibility: hidden`, que entra na mesma transição.
+
+O `padding` fica no `<p>`, dentro de `.faq-answer-inner`. Se estivesse no item do
+grid, ocuparia altura mesmo com a linha em `0fr` e a resposta nunca fecharia por
+completo — foi exatamente o que aconteceu na primeira tentativa.
+
+O sinal `+` / `−` é desenhado com dois filetes em `::before`/`::after` e comandado
+por `[aria-expanded="true"]` no CSS. O JS não escreve o caractere: só alterna
+`aria-expanded` e a classe `.is-open`.
+
 ## Rótulos de seção
 
 Só duas seções têm rótulo acima do título: o topo da página ("Climatização em

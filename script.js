@@ -114,13 +114,16 @@ function initFaq() {
   document.querySelectorAll('.faq-item button').forEach((button) => {
     const answer = document.getElementById(button.getAttribute('aria-controls'));
     if (!answer) return;
-    const icon = button.querySelector('span');
+
+    // Estado inicial em sincronia com o HTML: todas as perguntas começam fechadas.
+    answer.classList.toggle('is-open', button.getAttribute('aria-expanded') === 'true');
 
     button.addEventListener('click', () => {
       const opening = button.getAttribute('aria-expanded') !== 'true';
       button.setAttribute('aria-expanded', String(opening));
-      if (icon) icon.textContent = opening ? '−' : '+';
-      answer.hidden = !opening;
+      // A classe permite animar a altura; 'hidden' cortaria a transição, e o
+      // desenho do sinal +/− vem do próprio aria-expanded, pelo CSS.
+      answer.classList.toggle('is-open', opening);
     });
   });
 }

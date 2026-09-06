@@ -267,9 +267,25 @@ svg { display: block; }
 .faq-item { border-bottom: 1px solid var(--line); }
 .faq-item h3 { margin: 0; }
 .faq-item button { width: 100%; min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 2px; border: 0; color: var(--blue-deep); background: transparent; text-align: left; font-weight: 800; }
-.faq-item button span { flex: 0 0 auto; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; color: var(--blue); background: var(--ice-faq); font-size: 1.2rem; }
-.faq-answer { padding: 0 55px 24px 2px; color: var(--muted); }
-.faq-answer p { margin: 0; }
+
+/* O sinal é desenhado com dois filetes: fechado eles formam um "+", e ao abrir o
+   vertical gira até se sobrepor ao horizontal, virando um "−". */
+.faq-icon { position: relative; flex: 0 0 auto; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; color: var(--blue); background: var(--ice-faq); transition: background .3s ease, color .3s ease, transform .35s cubic-bezier(.22,.61,.36,1); }
+.faq-icon::before, .faq-icon::after { content: ""; position: absolute; width: 13px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .35s cubic-bezier(.22,.61,.36,1); }
+.faq-icon::after { transform: rotate(90deg); }
+.faq-item button:hover .faq-icon { background: var(--blue); color: var(--white); }
+.faq-item button[aria-expanded="true"] .faq-icon { transform: rotate(180deg); background: var(--blue); color: var(--white); }
+.faq-item button[aria-expanded="true"] .faq-icon::after { transform: rotate(0deg); }
+
+/* Altura animada sem valor fixo: o grid interpola de 0fr a 1fr, então a resposta
+   abre exatamente na altura do texto, qualquer que seja ele. A visibility tira o
+   conteúdo fechado da árvore de acessibilidade sem cortar a transição. */
+.faq-answer { display: grid; grid-template-rows: 0fr; visibility: hidden; color: var(--muted); transition: grid-template-rows .38s cubic-bezier(.22,.61,.36,1), visibility .38s; }
+.faq-answer.is-open { grid-template-rows: 1fr; visibility: visible; }
+/* O padding vive no <p>, dentro do wrapper. Se ficasse no item do grid, ele
+   ocuparia altura mesmo com a linha em 0fr e a resposta nunca fecharia de todo. */
+.faq-answer-inner { overflow: hidden; min-height: 0; }
+.faq-answer p { margin: 0; padding: 0 55px 24px 2px; }
 
 .contact { color: var(--white); background: linear-gradient(135deg, var(--blue-deep), var(--blue-dark)); }
 .contact-shell { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 90px; }
