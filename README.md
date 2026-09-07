@@ -194,6 +194,25 @@ a ser instantânea.
 O trilho tem `tabindex="0"` e `aria-roledescription="carrossel"`: quem navega
 pelo teclado foca nele e usa as setas.
 
+## Cards flutuantes do hero
+
+Os dois cards sobre a foto ("Garantia de 90 dias" e "Residencial e comercial")
+entram com fade e escala depois do bloco da imagem, e depois ficam pairando de
+leve, em fases opostas.
+
+O detalhe que faz funcionar: a entrada anima `scale` e a flutuação anima
+`translate`. São propriedades separadas de `transform`, então as duas animações
+rodam ao mesmo tempo sem uma sobrescrever a outra — com `transform` nas duas,
+apenas a última valeria.
+
+A animação está em `.hero-visual.visible .hero-badge`, não em `.hero-badge`
+direto: assim ela só começa quando o bloco da foto é revelado, e os cards não
+terminam de entrar antes de a imagem aparecer.
+
+Amplitude de 6px e ciclo de 6,5s são propositalmente discretos — o movimento não
+deve disputar atenção com o botão de orçamento. Sob `prefers-reduced-motion` não
+há animação nenhuma e os cards ficam visíveis.
+
 ## Carrossel de avaliações
 
 Os seis depoimentos da seção `#avaliacoes` são **avaliações reais** publicadas
