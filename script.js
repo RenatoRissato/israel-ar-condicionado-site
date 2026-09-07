@@ -247,6 +247,7 @@ function initStories() {
   let timer = null;
   let pausadoPeloUsuario = false;
   let rolandoSozinho = false;
+  let destravar = null;
 
   const destacar = (indice) => {
     atual = (indice + cards.length) % cards.length;
@@ -264,14 +265,19 @@ function initStories() {
   // destaque anda sozinho sem mexer no trilho.
   const mostrar = (indice, suave = true) => {
     destacar(indice);
+    // A trava vale sempre, mesmo quando não há o que rolar: no desktop cabem
+    // vários cards e o scrollLeft quase não muda, então qualquer evento de
+    // scroll residual recalcularia o destaque e desfaria o avanço do rodízio.
+    rolandoSozinho = true;
+    clearTimeout(destravar);
+    destravar = setTimeout(() => { rolandoSozinho = false; }, 700);
+
     const card = cards[atual];
     const inicio = card.offsetLeft - trilho.scrollLeft;
     const sobra = inicio + card.offsetWidth - trilho.clientWidth;
-    if (inicio >= -2 && sobra <= 2) return;
+    if (inicio >= -2 && sobra <= 2) return;   // já está inteiro à vista
     const alvo = card.offsetLeft - (trilho.clientWidth - card.offsetWidth) / 2;
-    rolandoSozinho = true;
     trilho.scrollTo({ left: Math.max(0, alvo), behavior: (suave && !reducedMotion) ? 'smooth' : 'auto' });
-    setTimeout(() => { rolandoSozinho = false; }, 700);
   };
 
   const parar = () => { clearInterval(timer); timer = null; };
@@ -324,10 +330,12 @@ function initStories() {
     agendado = true;
     requestAnimationFrame(() => {
       agendado = false;
-      const centro = trilho.scrollLeft + trilho.clientWidth / 2;
+      // Compara pela borda esquerda, não pelo centro do trilho: no desktop cabem
+      // vários cards de uma vez e o centro cairia sobre o segundo, fazendo a
+      // sequência começar no 2. Pela borda, o primeiro card é o primeiro.
       let melhor = 0, menor = Infinity;
       cards.forEach((card, i) => {
-        const d = Math.abs(card.offsetLeft + card.offsetWidth / 2 - centro);
+        const d = Math.abs(card.offsetLeft - trilho.scrollLeft);
         if (d < menor) { menor = d; melhor = i; }
       });
       destacar(melhor);
