@@ -236,10 +236,6 @@ svg { display: block; }
 .reviews { background: var(--white); }
 .reviews-layout { display: grid; grid-template-columns: .85fr 1.15fr; align-items: center; gap: 85px; }
 .reviews-copy > p { margin-bottom: 27px; }
-/* Ponto de maior confianca da pagina: quem leu os depoimentos precisa ter o
-   que fazer em seguida. */
-.reviews-cta { margin: 18px 0 0; font-size: .95rem; }
-.reviews-cta a { color: var(--blue); font-weight: 800; text-underline-offset: 3px; }
 .button-outline { color: var(--blue-dark); border: 1px solid var(--line-outline); background: transparent; }
 .button-outline:hover { background: var(--ice); }
 .review-carousel { position: relative; overflow: hidden; padding: 42px 42px 46px; border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow-sm); }
