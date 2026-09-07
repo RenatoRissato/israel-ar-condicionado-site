@@ -138,7 +138,6 @@ svg { display: block; }
 .trust-strip strong { margin-bottom: 3px; color: var(--blue-deep); font-size: .9rem; }
 
 .section-heading { max-width: 740px; margin: 0 auto 50px; text-align: center; }
-.section-heading-left { max-width: 770px; margin-left: 0; text-align: left; }
 .section-heading h2, .audience-copy h2, .reviews-copy h2, .faq-intro h2, .contact-copy h2 { margin: 0 0 18px; color: var(--blue-deep); font-size: clamp(2rem, 4vw, 3.45rem); line-height: 1.08; letter-spacing: -.045em; }
 .section-heading > p:last-child, .audience-copy > p, .reviews-copy > p, .faq-intro > p, .contact-copy > p { margin: 0; color: var(--muted); font-size: 1.02rem; }
 .problems { padding-top: 95px; background: var(--surface); }
