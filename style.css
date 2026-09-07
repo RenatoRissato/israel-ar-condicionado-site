@@ -301,6 +301,21 @@ svg { display: block; }
 .contact-list svg { width: 22px; height: 22px; fill: none; stroke: var(--accent-400); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .contact-list span { display: grid; font-weight: 750; }
 .contact-list small { color: var(--on-dark-500); font-size: .71rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+/* Mapa na seção de contato. O iframe do Google é carregado com loading="lazy":
+   ele só busca os ~500KB de scripts quando entra na tela. O card sobreposto
+   repete o endereço em texto, para quem não carrega o iframe ainda ter a
+   informação — e para o Google ler o endereço como conteúdo, não como imagem. */
+.map-block { margin-top: 64px; }
+.map-frame { position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.18); border-radius: var(--radius-lg); box-shadow: 0 26px 60px rgba(2,20,40,.42); }
+.map-frame iframe { display: block; width: 100%; height: 420px; border: 0; filter: saturate(.92); }
+.map-card { position: absolute; top: 26px; left: 26px; width: min(320px, calc(100% - 52px)); padding: 22px 24px; border-radius: 18px; color: var(--text); background: rgba(255,255,255,.96); box-shadow: 0 18px 44px rgba(2,20,40,.3); backdrop-filter: blur(10px); }
+.map-label { margin: 0 0 12px; display: flex; align-items: center; gap: 8px; color: var(--blue); font-size: .82rem; font-weight: 800; }
+.map-label svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.map-card strong { display: block; color: var(--blue-deep); font-size: 1.06rem; line-height: 1.3; }
+.map-card > span { display: block; margin-top: 4px; color: var(--muted); font-size: .87rem; }
+.map-route { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; min-height: 44px; color: var(--blue); font-size: .9rem; font-weight: 800; text-underline-offset: 3px; }
+.map-route span { transition: transform .2s; }
+.map-route:hover span { transform: translate(2px, -2px); }
 .quote-form { padding: 38px; border-radius: 24px; color: var(--text); background: var(--white); box-shadow: var(--shadow-lg); }
 .form-heading { margin-bottom: 24px; }
 .form-heading span { color: var(--blue); font-size: .76rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
@@ -431,6 +446,10 @@ svg { display: block; }
   .stories-track { gap: 14px; padding-bottom: 16px; }
   .story { width: min(78vw, 300px); aspect-ratio: 9 / 15.5; scroll-snap-align: start; }
   .story-nav { display: none; }
+  /* Sobreposto, o card cobriria quase todo o mapa numa tela estreita. */
+  .map-block { margin-top: 44px; }
+  .map-frame iframe { height: 260px; }
+  .map-card { position: static; width: auto; border-radius: 0; box-shadow: none; backdrop-filter: none; }
   .review-carousel { padding: 28px 23px 32px; }
   .carousel-progress { right: 23px; left: 23px; }
   .carousel-controls { gap: 9px; }
@@ -444,6 +463,7 @@ svg { display: block; }
   .floating-whatsapp span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   .back-to-top { right: 20px; bottom: 82px; }
 }
+
 
 /* Alvos de toque no celular: os links de orçamento mediam 16-23px de altura e
    os do rodapé 24px, bem abaixo dos 44px que o dedo precisa para acertar. */
