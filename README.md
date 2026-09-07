@@ -182,8 +182,20 @@ do dedo, a barra de rolagem, as setas e as teclas ← → empurram esse mesmo sc
 - **Celular**: um card por vez em `min(78vw, 300px)`, deixando uma fatia do
   próximo à mostra. As setas somem; ficam os indicadores.
 
-Os cards rodam sozinhos a cada 4 segundos (`STORIES_DELAY` no `script.js`),
-percorrendo os cinco e voltando ao primeiro. O card em foco fica em escala e cor
+**No desktop, a rolagem horizontal é comandada pela rolagem vertical da página.**
+Conforme o centro da seção atravessa a tela, o trilho percorre seus ~454px de um
+lado ao outro. A conta acompanha o centro (`1 - centro / innerHeight`) em vez do
+viewport inteiro: assim o movimento se distribui pelo trecho em que a seção está
+de fato à vista, em vez de terminar antes da metade dela.
+
+Basta a pessoa clicar numa seta, num indicador, usar as setas do teclado, arrastar
+ou girar a roda sobre o trilho para o efeito desligar de vez (`assumirControle`) —
+o gesto dela precisa mandar mais que o efeito, senão seria desfeito no scroll
+seguinte. Nesse momento o `scroll-snap` volta e o rodízio por tempo assume.
+
+No celular não há efeito atrelado: vale o swipe nativo com snap, e os cards rodam
+sozinhos a cada 4 segundos (`STORIES_DELAY` no `script.js`), percorrendo os cinco
+e voltando ao primeiro. O card em foco fica em escala e cor
 plenas; os demais recuam com escala menor, opacidade e foto dessaturada.
 
 **O destaque tem índice próprio, não é derivado do `scrollLeft`.** É o que faz o
