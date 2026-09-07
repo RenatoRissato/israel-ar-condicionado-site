@@ -505,7 +505,7 @@ svg { display: block; }
   .service-card.compact { grid-column: span 6; flex-direction: column; gap: 12px; padding: 18px 15px; }
   .service-card { padding: 25px; }
   .audience-visual > img { height: 300px; border-radius: 10px 50px 10px 10px; }
-  .audience-options { grid-template-columns: 1fr; }
+  .audience-options { grid-template-columns: 1fr; margin-bottom: 18px; }
   /* Os três pilares são curtos e cabem lado a lado mesmo em 390px. */
   .historia-pilares { gap: 8px; }
   .historia-pilares li { padding: 13px 10px; }
