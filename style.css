@@ -181,10 +181,8 @@ svg { display: block; }
 
 .audience { overflow: hidden; background: var(--ice); }
 .audience-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 90px; }
-.audience-visual { position: relative; min-height: 520px; }
-.audience-visual > img { width: 90%; height: 440px; object-fit: cover; border-radius: 12px 80px 12px 12px; box-shadow: var(--shadow-lg); }
-.audience-product { position: absolute; right: 0; bottom: 0; width: 55%; padding: 15px; border-radius: 18px; background: var(--white); box-shadow: var(--shadow-lg); }
-.audience-product img { width: 100%; height: 155px; object-fit: cover; object-position: center; border-radius: 11px; }
+.audience-visual { position: relative; }
+.audience-visual > img { width: 100%; height: 470px; object-fit: cover; border-radius: 12px 80px 12px 12px; box-shadow: var(--shadow-lg); }
 .audience-copy > p { margin-bottom: 28px; }
 .audience-options { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
 .audience-options article { display: flex; gap: 13px; padding: 20px; border: 1px solid var(--line-soft); border-radius: 14px; background: var(--white); }
@@ -397,7 +395,7 @@ svg { display: block; }
   .audience-grid, .reviews-layout, .faq-layout, .contact-shell { grid-template-columns: 1fr; }
   .audience-grid { gap: 45px; }
   .audience-visual { max-width: 650px; }
-  .audience-visual > img { width: 91%; }
+  .audience-visual > img { height: 420px; }
   .faq-intro { position: static; }
   .footer-grid { grid-template-columns: 1.2fr 1fr; }
   .footer-grid > div:last-child { grid-column: 1 / -1; }
@@ -437,10 +435,7 @@ svg { display: block; }
      Empilham icone sobre texto para caber nos ~170px de cada coluna. */
   .service-card.compact { grid-column: span 6; flex-direction: column; gap: 12px; padding: 18px 15px; }
   .service-card { padding: 25px; }
-  .audience-visual { min-height: 390px; }
-  .audience-visual > img { width: 95%; height: 340px; border-radius: 10px 50px 10px 10px; }
-  .audience-product { width: 58%; }
-  .audience-product img { height: 100px; }
+  .audience-visual > img { height: 300px; border-radius: 10px 50px 10px 10px; }
   .audience-options { grid-template-columns: 1fr; }
   /* Um card por vez, deixando ~18% do próximo à mostra para indicar que há mais. */
   .stories-track { gap: 14px; padding-bottom: 16px; }
