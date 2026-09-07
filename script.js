@@ -129,6 +129,7 @@ function initFaq() {
 }
 
 const CAROUSEL_DELAY = 6000;
+const STORIES_DELAY = 4000;
 
 function initCarousel() {
   const carousel = document.querySelector('.review-carousel');
@@ -237,67 +238,113 @@ function initStories() {
   const trilho = document.querySelector('.stories-track');
   const cards = [...document.querySelectorAll('.story')];
   const dots = [...document.querySelectorAll('.story-dot')];
+  const toggle = document.querySelector('.stories-toggle');
   const anterior = document.querySelector('.story-nav-prev');
   const proximo = document.querySelector('.story-nav-next');
   if (!trilho || cards.length < 2) return;
 
-  // O passo é a distância real entre dois cards, então funciona em qualquer
-  // largura sem repetir no JS os valores que já estão no CSS.
-  const passo = () => (cards[1].offsetLeft - cards[0].offsetLeft) || cards[0].offsetWidth;
+  let atual = 0;
+  let timer = null;
+  let pausadoPeloUsuario = false;
+  let rolandoSozinho = false;
 
-  const sincronizar = () => {
-    // O card "atual" é o que está encostado na borda esquerda do trilho, que é
-    // onde o snap encaixa. Usar o mais central deixaria o indicador começar no
-    // meio da lista quando vários cards cabem na tela ao mesmo tempo.
-    let atual = 0;
-    let menor = Infinity;
-    cards.forEach((card, i) => {
-      const d = Math.abs(card.offsetLeft - trilho.scrollLeft);
-      if (d < menor) { menor = d; atual = i; }
-    });
-
+  const destacar = (indice) => {
+    atual = (indice + cards.length) % cards.length;
     cards.forEach((card, i) => card.classList.toggle('is-current', i === atual));
     dots.forEach((dot, i) => {
       dot.classList.toggle('is-active', i === atual);
       dot.setAttribute('aria-current', String(i === atual));
     });
-
-    // 2px de folga: o scrollLeft nem sempre fecha exatamente no limite.
     const fim = trilho.scrollWidth - trilho.clientWidth - 2;
     if (anterior) anterior.disabled = trilho.scrollLeft <= 2;
     if (proximo) proximo.disabled = trilho.scrollLeft >= fim;
   };
 
-  const irPara = (deslocamento) => {
-    trilho.scrollBy({ left: deslocamento, behavior: reducedMotion ? 'auto' : 'smooth' });
+  // Rola só o necessário: em telas largas os cards já cabem todos, e aí o
+  // destaque anda sozinho sem mexer no trilho.
+  const mostrar = (indice, suave = true) => {
+    destacar(indice);
+    const card = cards[atual];
+    const inicio = card.offsetLeft - trilho.scrollLeft;
+    const sobra = inicio + card.offsetWidth - trilho.clientWidth;
+    if (inicio >= -2 && sobra <= 2) return;
+    const alvo = card.offsetLeft - (trilho.clientWidth - card.offsetWidth) / 2;
+    rolandoSozinho = true;
+    trilho.scrollTo({ left: Math.max(0, alvo), behavior: (suave && !reducedMotion) ? 'smooth' : 'auto' });
+    setTimeout(() => { rolandoSozinho = false; }, 700);
   };
 
-  if (anterior) anterior.addEventListener('click', () => irPara(-passo()));
-  if (proximo) proximo.addEventListener('click', () => irPara(passo()));
+  const parar = () => { clearInterval(timer); timer = null; };
 
-  dots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      const alvo = cards[Number(dot.dataset.goto)];
-      if (!alvo) return;
-      trilho.scrollTo({ left: alvo.offsetLeft, behavior: reducedMotion ? 'auto' : 'smooth' });
+  const rodar = () => {
+    if (timer || reducedMotion || pausadoPeloUsuario) return;
+    timer = setInterval(() => mostrar(atual + 1), STORIES_DELAY);
+  };
+
+  const reiniciar = () => { if (timer) { parar(); rodar(); } };
+
+  if (anterior) anterior.addEventListener('click', () => { mostrar(atual - 1); reiniciar(); });
+  if (proximo) proximo.addEventListener('click', () => { mostrar(atual + 1); reiniciar(); });
+  dots.forEach((dot) => dot.addEventListener('click', () => { mostrar(Number(dot.dataset.goto)); reiniciar(); }));
+
+  trilho.addEventListener('keydown', (evento) => {
+    if (evento.key === 'ArrowRight') { evento.preventDefault(); mostrar(atual + 1); reiniciar(); }
+    if (evento.key === 'ArrowLeft') { evento.preventDefault(); mostrar(atual - 1); reiniciar(); }
+  });
+
+  if (toggle) {
+    // WCAG 2.2.2: conteúdo que se move sozinho precisa de um jeito de parar.
+    if (reducedMotion) toggle.hidden = true;
+    toggle.addEventListener('click', () => {
+      pausadoPeloUsuario = !pausadoPeloUsuario;
+      toggle.setAttribute('aria-pressed', String(pausadoPeloUsuario));
+      toggle.setAttribute('aria-label', pausadoPeloUsuario ? 'Retomar rotação automática' : 'Pausar rotação automática');
+      toggle.firstElementChild.textContent = pausadoPeloUsuario ? '▶' : '❙❙';
+      if (pausadoPeloUsuario) parar();
+      else rodar();
     });
-  });
+  }
 
-  // Setas do teclado navegam quando o trilho está focado.
-  trilho.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowRight') { event.preventDefault(); irPara(passo()); }
-    if (event.key === 'ArrowLeft') { event.preventDefault(); irPara(-passo()); }
-  });
+  const stories = document.querySelector('.stories');
+  if (stories) {
+    stories.addEventListener('mouseenter', parar);
+    stories.addEventListener('mouseleave', rodar);
+    stories.addEventListener('focusin', parar);
+    stories.addEventListener('focusout', (evento) => {
+      if (!stories.contains(evento.relatedTarget)) rodar();
+    });
+  }
+  trilho.addEventListener('touchstart', parar, { passive: true });
+  document.addEventListener('visibilitychange', () => (document.hidden ? parar() : rodar()));
 
+  // Arrastar com o dedo manda: o destaque segue o card que ficou centralizado.
   let agendado = false;
   trilho.addEventListener('scroll', () => {
-    if (agendado) return;
+    if (agendado || rolandoSozinho) return;
     agendado = true;
-    requestAnimationFrame(() => { agendado = false; sincronizar(); });
+    requestAnimationFrame(() => {
+      agendado = false;
+      const centro = trilho.scrollLeft + trilho.clientWidth / 2;
+      let melhor = 0, menor = Infinity;
+      cards.forEach((card, i) => {
+        const d = Math.abs(card.offsetLeft + card.offsetWidth / 2 - centro);
+        if (d < menor) { menor = d; melhor = i; }
+      });
+      destacar(melhor);
+    });
   }, { passive: true });
 
-  window.addEventListener('resize', sincronizar);
-  sincronizar();
+  window.addEventListener('resize', () => destacar(atual));
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entradas) => {
+      entradas.forEach((entrada) => (entrada.isIntersecting ? rodar() : parar()));
+    }, { threshold: .3 }).observe(trilho);
+  } else {
+    rodar();
+  }
+
+  destacar(0);
 }
 
 function initFloatingCta() {

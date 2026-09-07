@@ -226,8 +226,14 @@ svg { display: block; }
 .story p { margin: 0; color: var(--on-dark-300); font-size: .87rem; line-height: 1.5; }
 
 /* O card no centro do trilho ganha um leve avanço — é o que dá o ritmo de stories. */
-.story.is-current { border-color: rgba(122,208,250,.5); box-shadow: 0 22px 54px rgba(2,20,40,.55); }
-.story:hover, .story:focus-within { transform: translateY(-8px); box-shadow: 0 28px 60px rgba(2,20,40,.6); }
+/* Ênfase no card em foco: os demais recuam em escala e cor, o atual fica cheio.
+   Usa 'scale' (propriedade própria) para não recalcular o layout do trilho. */
+.story { scale: .955; opacity: .74; transition: scale .55s cubic-bezier(.22,.61,.36,1), opacity .55s ease, border-color .4s ease, box-shadow .45s ease; }
+.story img { transition: transform .8s cubic-bezier(.22,.61,.36,1), filter .55s ease; filter: saturate(.75) brightness(.88); }
+.story.is-current { scale: 1; opacity: 1; border-color: rgba(122,208,250,.55); box-shadow: 0 24px 58px rgba(2,20,40,.58); }
+.story.is-current img { filter: none; }
+.story:hover, .story:focus-within { translate: 0 -8px; opacity: 1; box-shadow: 0 28px 60px rgba(2,20,40,.6); }
+.story:hover img, .story:focus-within img { filter: none; }
 .story:hover img, .story:focus-within img { transform: scale(1.08); }
 
 .story-nav { position: absolute; top: calc(50% - 14px); z-index: 3; width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.28); border-radius: 50%; color: var(--white); background: rgba(6,45,84,.82); backdrop-filter: blur(8px); transition: background .25s, opacity .25s, transform .25s; }
@@ -237,7 +243,10 @@ svg { display: block; }
 .story-nav-prev { left: -22px; }
 .story-nav-next { right: -22px; }
 
-.stories-dots { margin-top: 4px; display: flex; justify-content: center; gap: 9px; }
+.stories-dots { margin-top: 4px; display: flex; align-items: center; justify-content: center; gap: 9px; }
+/* WCAG 2.2.2: conteúdo que se move sozinho precisa de um jeito de parar. */
+.stories-toggle { width: 26px; height: 26px; margin-right: 6px; padding: 0; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.28); border-radius: 50%; color: var(--white); background: transparent; font-size: .5rem; letter-spacing: -.1em; transition: background .25s, border-color .25s; }
+.stories-toggle:hover { border-color: var(--accent-400); background: rgba(255,255,255,.12); }
 .story-dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.28); transition: width .3s ease, background .3s ease; }
 .story-dot.is-active { width: 24px; border-radius: 5px; background: var(--accent-400); }
 .story-dot:hover { background: var(--accent-300); }
@@ -498,6 +507,11 @@ svg { display: block; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
   .reveal { opacity: 1; transform: none; }
   .hero-badge, .hero-visual.visible .hero-badge { opacity: 1; scale: 1; translate: 0; animation: none; }
+  /* Sem rodízio, os cards não destacados ficariam apagados para sempre.
+     A borda do card atual permanece: é estática, e ainda orienta. */
+  .story, .story.is-current { scale: 1; opacity: 1; }
+  .story img, .story.is-current img { filter: none; }
+  .story:hover, .story:focus-within { translate: 0; }
 }
 
 .form-noscript { margin: 0 0 20px; padding: 14px 16px; border: 1px solid var(--warn-line); border-radius: 12px; background: var(--warn-bg); color: var(--warn-text); font-size: .87rem; line-height: 1.55; }

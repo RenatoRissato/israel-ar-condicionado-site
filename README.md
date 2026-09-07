@@ -182,14 +182,31 @@ do dedo, a barra de rolagem, as setas e as teclas ← → empurram esse mesmo sc
 - **Celular**: um card por vez em `min(78vw, 300px)`, deixando uma fatia do
   próximo à mostra. As setas somem; ficam os indicadores.
 
-O JS (`initStories`) só observa: no `scroll`, descobre qual card está encaixado
-na borda esquerda e sincroniza o card destacado, os indicadores e o estado das
-setas. O passo das setas é medido pela distância real entre dois cards
+Os cards rodam sozinhos a cada 4 segundos (`STORIES_DELAY` no `script.js`),
+percorrendo os cinco e voltando ao primeiro. O card em foco fica em escala e cor
+plenas; os demais recuam com escala menor, opacidade e foto dessaturada.
+
+**O destaque tem índice próprio, não é derivado do `scrollLeft`.** É o que faz o
+rodízio funcionar no desktop: ali os cinco cards quase cabem juntos e sobram só
+uns 240px de rolagem, menos que a largura de um card. Lendo a posição do scroll,
+o ciclo travava entre o primeiro e o segundo. Agora o trilho só rola quando o
+card alvo não está inteiro na tela — em telas largas o destaque anda sem mover
+nada.
+
+Arrastar com o dedo continua mandando: durante o scroll do visitante o destaque
+segue o card mais centralizado. A trava `rolandoSozinho` impede que a rolagem
+programada seja confundida com gesto.
+
+O rodízio para no hover, no foco por teclado, ao tocar, com a aba em segundo
+plano e com o carrossel fora da tela. O botão de pausa atende à WCAG 2.2.2.
+
+O passo das setas é medido pela distância real entre dois cards
 (`cards[1].offsetLeft - cards[0].offsetLeft`), então o CSS pode mudar de largura
 sem que o JS precise saber.
 
-Sob `prefers-reduced-motion` o zoom e a elevação não acontecem e a rolagem passa
-a ser instantânea.
+Sob `prefers-reduced-motion` não há rodízio, o zoom e a elevação não acontecem, a
+rolagem é instantânea e **todos os cards voltam a escala e opacidade cheias** —
+sem isso os não destacados ficariam apagados para sempre.
 
 O trilho tem `tabindex="0"` e `aria-roledescription="carrossel"`: quem navega
 pelo teclado foca nele e usa as setas.
