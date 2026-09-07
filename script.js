@@ -372,6 +372,38 @@ function initFloatingCta() {
   }, { threshold: 0 }).observe(hero);
 }
 
+function initContador() {
+  const alvo = document.querySelector('[data-contar]');
+  if (!alvo || !('IntersectionObserver' in window)) return;
+
+  const total = Number(alvo.dataset.contar);
+  if (!Number.isFinite(total)) return;
+
+  // Sob prefers-reduced-motion o número aparece pronto: o valor é a informação,
+  // a contagem é só ênfase.
+  if (reducedMotion) { alvo.textContent = String(total); return; }
+
+  const observador = new IntersectionObserver((entradas, self) => {
+    entradas.forEach((entrada) => {
+      if (!entrada.isIntersecting) return;
+      self.unobserve(entrada.target);
+
+      const duracao = 900;
+      const inicio = performance.now();
+      const passo = (agora) => {
+        const t = Math.min(1, (agora - inicio) / duracao);
+        // desacelera no fim, para o número "assentar" em vez de parar seco
+        alvo.textContent = String(Math.round(total * (1 - Math.pow(1 - t, 3))));
+        if (t < 1) requestAnimationFrame(passo);
+      };
+      alvo.textContent = '0';
+      requestAnimationFrame(passo);
+    });
+  }, { threshold: .5 });
+
+  observador.observe(alvo);
+}
+
 function initQuoteForm() {
   const form = document.getElementById('orcamento-form');
   if (!form) return;
@@ -472,6 +504,7 @@ initFaq();
 initCarousel();
 initStories();
 initFloatingCta();
+initContador();
 initQuoteForm();
 initFooterYear();
 initReveal();
