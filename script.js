@@ -8,7 +8,7 @@
    para que uma seção removida do HTML não derrube o resto da página. */
 
 const WHATSAPP_NUMBER = '5519999453094';
-const WHATSAPP_DEFAULT_MESSAGE = 'Olá! Vim pelo site da Israel Ar-condicionado e gostaria de solicitar um orçamento.';
+const WHATSAPP_DEFAULT_MESSAGE = 'Olá! Vim pelo site do Israel Ar-condicionado e gostaria de solicitar um orçamento.';
 const MOBILE_BREAKPOINT = 820;
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -451,7 +451,7 @@ function initQuoteForm() {
 
     const details = form.elements.mensagem.value.trim() || 'Não informado';
     openWhatsApp(
-      `Olá! Vim pelo site da Israel Ar-condicionado.\n\n` +
+      `Olá! Vim pelo site do Israel Ar-condicionado.\n\n` +
       `Nome: ${name.value.trim()}\n` +
       `Atendimento: ${type.value}\n` +
       `Serviço: ${service.value}\n` +

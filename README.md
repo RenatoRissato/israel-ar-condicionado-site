@@ -39,6 +39,12 @@ sitemap.xml     Uma URL — atualize <lastmod> em mudanças relevantes
 assets/         Imagens em WebP + og-image.jpg (preview de compartilhamento)
 ```
 
+## Como a marca é referida no texto
+
+O nome leva artigo **masculino**: "o Israel Ar-condicionado", "do Israel
+Ar-condicionado", "pelo Israel Ar-condicionado". Vale para textos visíveis, `alt`
+de imagens, `title` do mapa e as mensagens montadas para o WhatsApp.
+
 ## Trocando o número de WhatsApp
 
 O número aparece em dois lugares, por design:
