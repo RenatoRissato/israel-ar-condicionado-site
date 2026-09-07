@@ -330,7 +330,7 @@ svg { display: block; }
 .brand-footer { color: var(--white); }
 .footer-brand p { margin: 18px 0 10px; }
 .footer-brand > strong { color: var(--accent-400); }
-.footer-grid h2 { margin: 8px 0 16px; color: var(--white); font-size: .92rem; text-transform: uppercase; letter-spacing: .08em; }
+.footer-grid .footer-title { margin: 8px 0 16px; color: var(--white); font-size: .92rem; text-transform: uppercase; letter-spacing: .08em; }
 .footer-grid > div:not(:first-child) a { display: block; margin: 9px 0; color: var(--on-dark-400); text-decoration: none; font-size: .9rem; }
 .footer-grid a:hover { color: var(--white); }
 .footer-bottom { margin-top: 45px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1); color: var(--on-dark-600); font-size: .78rem; }
