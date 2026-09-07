@@ -203,8 +203,15 @@ Arrastar com o dedo continua mandando: durante o scroll do visitante o destaque
 segue o card mais centralizado. A trava `rolandoSozinho` impede que a rolagem
 programada seja confundida com gesto.
 
-O rodízio para no hover, no foco por teclado, ao tocar, com a aba em segundo
-plano e com o carrossel fora da tela. O botão de pausa atende à WCAG 2.2.2.
+O rodízio para no foco por teclado, com a aba em segundo plano e com o carrossel
+fora da tela. O botão de pausa atende à WCAG 2.2.2.
+
+**A pausa por hover só é registrada onde existe ponteiro de verdade**
+(`matchMedia('(hover: hover)')`). Em tela de toque o navegador dispara
+`mouseenter` sintético sem o `mouseleave` correspondente — o rodízio pausaria no
+primeiro toque e nunca mais voltaria. Pelo mesmo motivo o `touchstart` tem um
+`touchend` que devolve o rodízio depois de 2,5s: sem ele, encostar o dedo no
+carrossel ao rolar a página parava tudo em definitivo.
 
 O passo das setas é medido pela distância real entre dois cards
 (`cards[1].offsetLeft - cards[0].offsetLeft`), então o CSS pode mudar de largura

@@ -12,6 +12,9 @@ const WHATSAPP_DEFAULT_MESSAGE = 'Olá! Vim pelo site do Israel Ar-condicionado 
 const MOBILE_BREAKPOINT = 820;
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Em tela de toque o navegador dispara mouseenter sintetico sem o mouseleave
+// correspondente. Pausar por hover ali deixaria o rodizio parado para sempre.
+const temPonteiro = window.matchMedia('(hover: hover)').matches;
 
 function whatsappUrl(message = WHATSAPP_DEFAULT_MESSAGE) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -213,8 +216,10 @@ function initCarousel() {
   }
 
   // Pausa enquanto o visitante lê (ponteiro em cima) ou navega pelo teclado.
-  carousel.addEventListener('mouseenter', parar);
-  carousel.addEventListener('mouseleave', rodar);
+  if (temPonteiro) {
+    carousel.addEventListener('mouseenter', parar);
+    carousel.addEventListener('mouseleave', rodar);
+  }
   carousel.addEventListener('focusin', parar);
   carousel.addEventListener('focusout', (event) => {
     if (!carousel.contains(event.relatedTarget)) rodar();
@@ -313,14 +318,23 @@ function initStories() {
 
   const stories = document.querySelector('.stories');
   if (stories) {
-    stories.addEventListener('mouseenter', parar);
-    stories.addEventListener('mouseleave', rodar);
+    if (temPonteiro) {
+      stories.addEventListener('mouseenter', parar);
+      stories.addEventListener('mouseleave', rodar);
+    }
     stories.addEventListener('focusin', parar);
     stories.addEventListener('focusout', (evento) => {
       if (!stories.contains(evento.relatedTarget)) rodar();
     });
   }
-  trilho.addEventListener('touchstart', parar, { passive: true });
+  // O dedo pausa enquanto arrasta e devolve o rodízio ao soltar. Sem o touchend,
+  // encostar no carrossel ao rolar a página parava tudo em definitivo.
+  let retomarAposToque = null;
+  trilho.addEventListener('touchstart', () => { clearTimeout(retomarAposToque); parar(); }, { passive: true });
+  trilho.addEventListener('touchend', () => {
+    clearTimeout(retomarAposToque);
+    retomarAposToque = setTimeout(rodar, 2500);
+  }, { passive: true });
   document.addEventListener('visibilitychange', () => (document.hidden ? parar() : rodar()));
 
   // Arrastar com o dedo manda: o destaque segue o card que ficou centralizado.
