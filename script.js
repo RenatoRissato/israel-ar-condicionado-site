@@ -277,61 +277,19 @@ function initStories() {
   const parar = () => { clearInterval(timer); timer = null; };
 
   const rodar = () => {
-    // No desktop quem move o trilho é a rolagem da página, não um timer.
-    if (timer || reducedMotion || pausadoPeloUsuario || atreladoAoScroll()) return;
+    if (timer || reducedMotion || pausadoPeloUsuario) return;
     timer = setInterval(() => mostrar(atual + 1), STORIES_DELAY);
   };
 
-  // Rolagem horizontal comandada pela rolagem vertical da página, no desktop.
-  // Desliga assim que a pessoa assume o controle — arrastar ou clicar deve mandar
-  // mais que o efeito, senão o gesto dela seria desfeito no scroll seguinte.
-  const secao = trilho.closest('section');
-  let assumidoPeloUsuario = false;
-  const atreladoAoScroll = () => !assumidoPeloUsuario && !reducedMotion && window.innerWidth > MOBILE_BREAKPOINT && !!secao;
-
-  const acompanharPagina = () => {
-    if (!atreladoAoScroll()) return;
-    // Acompanha o centro da seção atravessando a tela: começa quando ele entra
-    // por baixo e termina quando sai por cima. Assim o movimento se distribui
-    // pelo trecho em que a seção está de fato à vista.
-    const caixa = secao.getBoundingClientRect();
-    const centro = caixa.top + caixa.height / 2;
-    const t = Math.min(1, Math.max(0, 1 - centro / window.innerHeight));
-    rolandoSozinho = true;
-    trilho.scrollLeft = t * (trilho.scrollWidth - trilho.clientWidth);
-    rolandoSozinho = false;
-    const centroTrilho = trilho.scrollLeft + trilho.clientWidth / 2;
-    let melhor = 0, menor = Infinity;
-    cards.forEach((card, i) => {
-      const d = Math.abs(card.offsetLeft + card.offsetWidth / 2 - centroTrilho);
-      if (d < menor) { menor = d; melhor = i; }
-    });
-    destacar(melhor);
-  };
-
-  const assumirControle = () => {
-    if (assumidoPeloUsuario) return;
-    assumidoPeloUsuario = true;
-    trilho.style.scrollSnapType = '';
-    rodar();
-  };
-
-  let aguardandoQuadro = false;
-  window.addEventListener('scroll', () => {
-    if (aguardandoQuadro || !atreladoAoScroll()) return;
-    aguardandoQuadro = true;
-    requestAnimationFrame(() => { aguardandoQuadro = false; acompanharPagina(); });
-  }, { passive: true });
-
   const reiniciar = () => { if (timer) { parar(); rodar(); } };
 
-  if (anterior) anterior.addEventListener('click', () => { assumirControle(); mostrar(atual - 1); reiniciar(); });
-  if (proximo) proximo.addEventListener('click', () => { assumirControle(); mostrar(atual + 1); reiniciar(); });
-  dots.forEach((dot) => dot.addEventListener('click', () => { assumirControle(); mostrar(Number(dot.dataset.goto)); reiniciar(); }));
+  if (anterior) anterior.addEventListener('click', () => { mostrar(atual - 1); reiniciar(); });
+  if (proximo) proximo.addEventListener('click', () => { mostrar(atual + 1); reiniciar(); });
+  dots.forEach((dot) => dot.addEventListener('click', () => { mostrar(Number(dot.dataset.goto)); reiniciar(); }));
 
   trilho.addEventListener('keydown', (evento) => {
-    if (evento.key === 'ArrowRight') { evento.preventDefault(); assumirControle(); mostrar(atual + 1); reiniciar(); }
-    if (evento.key === 'ArrowLeft') { evento.preventDefault(); assumirControle(); mostrar(atual - 1); reiniciar(); }
+    if (evento.key === 'ArrowRight') { evento.preventDefault(); mostrar(atual + 1); reiniciar(); }
+    if (evento.key === 'ArrowLeft') { evento.preventDefault(); mostrar(atual - 1); reiniciar(); }
   });
 
   if (toggle) {
@@ -356,8 +314,7 @@ function initStories() {
       if (!stories.contains(evento.relatedTarget)) rodar();
     });
   }
-  trilho.addEventListener('touchstart', () => { assumirControle(); parar(); }, { passive: true });
-  trilho.addEventListener('wheel', assumirControle, { passive: true });
+  trilho.addEventListener('touchstart', parar, { passive: true });
   document.addEventListener('visibilitychange', () => (document.hidden ? parar() : rodar()));
 
   // Arrastar com o dedo manda: o destaque segue o card que ficou centralizado.
@@ -387,10 +344,7 @@ function initStories() {
     rodar();
   }
 
-  // O snap atrapalharia a rolagem contínua comandada pela página.
-  if (atreladoAoScroll()) trilho.style.scrollSnapType = 'none';
   destacar(0);
-  acompanharPagina();
 }
 
 function initFloatingCta() {
