@@ -61,8 +61,8 @@ Também vale conferir o `telephone` no JSON-LD do `<head>`.
 
 ## Trocando o domínio
 
-O domínio está gravado em seis pontos. Um find/replace de
-`https://www.israelarcondicionado.com.br` cobre todos:
+O domínio está gravado em onze pontos, em quatro arquivos. Um find/replace de
+`https://israelarcondicionado.com` cobre todos:
 
 - `index.html` — `canonical`, `og:url`, `og:image`, `twitter:image` e os campos
   `@id` / `url` / `image` / `logo` dos dois blocos JSON-LD
@@ -341,5 +341,6 @@ deixe o comando de build **vazio** e a pasta de saída como a raiz do projeto. O
 `serve` é dependência de desenvolvimento e não vai para produção.
 
 Configure o servidor para servir `index.html` na raiz e redirecionar a variante
-sem `www` para `https://www.israelarcondicionado.com.br/`, que é a URL declarada
-no `canonical`.
+com `www` para `https://israelarcondicionado.com/`, que é a URL declarada
+no `canonical`. Na Vercel isso é automático: basta marcar o domínio sem `www`
+como principal que ele cria o redirecionamento do `www` sozinho.
