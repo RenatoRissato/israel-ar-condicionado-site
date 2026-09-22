@@ -1,346 +1,312 @@
-# Israel Ar-condicionado — site institucional
+# ❄️ Israel Ar-condicionado — Site Institucional
 
-Site estático de página única para instalação, manutenção e higienização de
-ar-condicionado em Limeira e região.
+Site institucional desenvolvido para o **Israel Ar-condicionado**, empresa de instalação, manutenção e higienização de sistemas de ar-condicionado em **Limeira-SP e região**.
 
-**Sem build.** São três arquivos servidos como estão: `index.html`, `style.css`
-e `script.js`. O `package.json` existe apenas para oferecer o `npm run dev` — não
-há etapa de compilação, bundler ou pré-processador, e o deploy é subir os
-arquivos como estão.
+O projeto foi desenvolvido com foco em apresentar os serviços da empresa de forma profissional, facilitar o contato com potenciais clientes e direcionar solicitações de orçamento diretamente para o WhatsApp.
 
-## Rodando localmente
+🌐 **Site online:**
+https://israel-ar-condicionado-site.vercel.app/
 
-```bash
-npm install    # uma vez, instala apenas o servidor estático
-npm run dev    # http://localhost:3000
+---
+
+## 📸 Sobre o projeto
+
+A proposta foi criar uma presença digital moderna para o Israel Ar-condicionado, permitindo que clientes encontrem rapidamente informações sobre os serviços prestados e solicitem atendimento.
+
+O site apresenta:
+
+* instalação de ar-condicionado;
+* manutenção preventiva e corretiva;
+* higienização de equipamentos;
+* atendimento residencial e comercial;
+* principais problemas relacionados ao ar-condicionado;
+* diferenciais da empresa;
+* avaliações de clientes;
+* perguntas frequentes;
+* formulário de orçamento;
+* integração direta com WhatsApp;
+* localização e área de atendimento.
+
+O projeto foi desenvolvido utilizando **HTML, CSS e JavaScript puros**, sem frameworks.
+
+---
+
+## 🚀 Tecnologias utilizadas
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge\&logo=html5\&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge\&logo=css3\&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge\&logo=javascript\&logoColor=black)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge\&logo=vercel\&logoColor=white)
+
+O projeto utiliza:
+
+* **HTML5** para a estrutura semântica da página;
+* **CSS3** para estilização, responsividade e animações;
+* **JavaScript** para interações, carrosséis, FAQ, formulário e integração com WhatsApp;
+* **Vercel** para hospedagem e publicação do site;
+* **Git e GitHub** para versionamento e armazenamento do projeto.
+
+Não foram utilizados frameworks como React, Vue ou Angular.
+
+---
+
+## ✨ Principais recursos
+
+### 📱 Design responsivo
+
+O site foi desenvolvido para funcionar corretamente em diferentes tamanhos de tela, incluindo:
+
+* smartphones;
+* tablets;
+* notebooks;
+* desktops.
+
+A disposição dos elementos se adapta automaticamente para manter a navegação simples e confortável.
+
+---
+
+### 💬 Integração com WhatsApp
+
+O principal canal de conversão do site é o WhatsApp.
+
+Os botões de orçamento direcionam o visitante diretamente para uma conversa com a empresa utilizando mensagens pré-configuradas.
+
+O formulário de orçamento também gera automaticamente uma mensagem com os dados preenchidos pelo usuário.
+
+Nenhuma informação do formulário é armazenada em servidor.
+
+---
+
+### 🧾 Formulário de orçamento
+
+O visitante pode preencher informações relacionadas ao atendimento desejado.
+
+Após o preenchimento, o JavaScript monta automaticamente uma mensagem e abre o WhatsApp da empresa.
+
+Isso permite oferecer uma experiência de orçamento sem necessidade de backend.
+
+---
+
+### ⭐ Avaliações de clientes
+
+O site possui uma seção dedicada a avaliações reais de clientes, apresentadas em formato de carrossel.
+
+O componente possui:
+
+* navegação automática;
+* controles manuais;
+* pausa durante interação;
+* suporte a teclado;
+* adaptação para dispositivos móveis.
+
+---
+
+### 🎞️ Diferenciais em formato de stories
+
+Os diferenciais da empresa são apresentados em cards verticais inspirados no formato de stories.
+
+No desktop, vários cards ficam visíveis ao mesmo tempo.
+
+No celular, o usuário pode navegar deslizando horizontalmente.
+
+O carrossel também possui rotação automática e controles de navegação.
+
+---
+
+### ❓ FAQ interativo
+
+A seção de perguntas frequentes utiliza um sistema de acordeão desenvolvido em JavaScript.
+
+O objetivo é permitir que o visitante encontre rapidamente respostas para dúvidas comuns sem deixar a página visualmente carregada.
+
+---
+
+### 🗺️ Localização e atendimento
+
+O site apresenta informações sobre a área atendida pelo Israel Ar-condicionado e facilita o contato com clientes de **Limeira-SP e região**.
+
+---
+
+## 🎨 Identidade visual
+
+O design utiliza predominantemente tons de azul relacionados ao segmento de climatização.
+
+O verde é utilizado principalmente nos botões de contato via WhatsApp.
+
+A hierarquia visual foi pensada para separar:
+
+* identidade da marca;
+* conteúdo;
+* chamadas para ação.
+
+Elementos como cards, sombras, espaçamentos e animações foram utilizados para criar uma interface moderna sem prejudicar a leitura.
+
+---
+
+## ⚡ Performance
+
+Algumas estratégias utilizadas para melhorar o carregamento do site:
+
+* imagens em **WebP**;
+* uso de `srcset` para diferentes resoluções;
+* preload da imagem principal;
+* ausência de frameworks pesados;
+* assets otimizados;
+* JavaScript separado por funcionalidades;
+* hospedagem estática através da Vercel.
+
+---
+
+## ♿ Acessibilidade
+
+O projeto possui cuidados de acessibilidade como:
+
+* navegação por teclado;
+* foco visível;
+* `aria-expanded`;
+* `aria-controls`;
+* `aria-live`;
+* link para pular diretamente ao conteúdo;
+* respeito à configuração `prefers-reduced-motion`;
+* áreas de toque adequadas em dispositivos móveis.
+
+As animações automáticas também possuem mecanismos de pausa.
+
+---
+
+## 🔎 SEO
+
+O projeto possui recursos voltados para mecanismos de busca e compartilhamento em redes sociais.
+
+Entre eles:
+
+* `canonical`;
+* Open Graph;
+* Twitter Cards;
+* `robots.txt`;
+* `sitemap.xml`;
+* dados estruturados com JSON-LD;
+* schema `HVACBusiness`;
+* schema `FAQPage`.
+
+Esses recursos ajudam mecanismos de busca a compreender melhor o conteúdo e o tipo de negócio representado pelo site.
+
+---
+
+## 📁 Estrutura do projeto
+
+```text
+Israel-Ar-Condicionado/
+│
+├── index.html
+├── style.css
+├── script.js
+├── package.json
+├── favicon.svg
+├── favicon.png
+├── robots.txt
+├── sitemap.xml
+│
+└── assets/
+    ├── imagens
+    └── og-image.jpg
 ```
 
-Sem instalar nada, qualquer um destes também serve:
+### Principais arquivos
+
+| Arquivo       | Função                                                |
+| ------------- | ----------------------------------------------------- |
+| `index.html`  | Estrutura e conteúdo principal do site                |
+| `style.css`   | Layout, responsividade, animações e identidade visual |
+| `script.js`   | Interações, FAQ, carrosséis, formulário e WhatsApp    |
+| `robots.txt`  | Configuração para mecanismos de busca                 |
+| `sitemap.xml` | Sitemap do site                                       |
+| `assets/`     | Imagens e arquivos utilizados pela página             |
+
+---
+
+## 💻 Executando localmente
+
+Clone o repositório:
+
+```bash
+git clone URL-DO-SEU-REPOSITORIO
+```
+
+Entre na pasta do projeto:
+
+```bash
+cd israel-ar-condicionado-site
+```
+
+Instale as dependências de desenvolvimento:
+
+```bash
+npm install
+```
+
+Execute o servidor local:
+
+```bash
+npm run dev
+```
+
+Depois acesse:
+
+```text
+http://localhost:3000
+```
+
+Também é possível utilizar:
 
 ```bash
 npx serve .
-python -m http.server 8000
 ```
 
-Abrir o `index.html` com duplo clique funciona, mas prefira um servidor: sob
-`file://` o navegador trata cada arquivo como uma origem diferente e alguns
-comportamentos não batem com produção.
+---
 
-## Estrutura
+## ☁️ Deploy
 
+O projeto está publicado na **Vercel**.
+
+🔗 **Produção:**
+https://israel-ar-condicionado-site.vercel.app/
+
+O projeto está hospedado como site estático utilizando HTML, CSS e JavaScript.
+
+---
+
+## 🎯 Objetivo do projeto
+
+Este projeto foi desenvolvido para atender uma necessidade real de um prestador de serviços e também faz parte do meu portfólio de desenvolvimento web.
+
+Durante o desenvolvimento foram aplicados conhecimentos em:
+
+```text
+HTML semântico
+CSS responsivo
+JavaScript
+UX/UI
+Responsividade
+SEO
+Acessibilidade
+Performance Web
+Integração com WhatsApp
+Git/GitHub
+Deploy com Vercel
 ```
-package.json    Só os scripts dev/start — nenhuma dependência de build
-index.html      Página inteira: conteúdo, sprite SVG de ícones e os dois blocos JSON-LD
-style.css       Estilos. Toda a paleta vive no :root do topo do arquivo
-script.js       Comportamento, dividido em funções init* independentes
-favicon.svg     Ícone principal (favicon.png é o fallback e o apple-touch-icon)
-robots.txt      Libera indexação e aponta o sitemap
-sitemap.xml     Uma URL — atualize <lastmod> em mudanças relevantes
-assets/         Imagens em WebP + og-image.jpg (preview de compartilhamento)
-```
 
-## Como a marca é referida no texto
+---
 
-O nome leva artigo **masculino**: "o Israel Ar-condicionado", "do Israel
-Ar-condicionado", "pelo Israel Ar-condicionado". Vale para textos visíveis, `alt`
-de imagens, `title` do mapa e as mensagens montadas para o WhatsApp.
+## 👨‍💻 Desenvolvedor
 
-## Trocando o número de WhatsApp
+**Renato Rissato da Silva**
 
-O número aparece em dois lugares, por design:
+Tecnólogo em **Análise e Desenvolvimento de Sistemas**.
 
-1. **`script.js`** — a constante `WHATSAPP_NUMBER` no topo. É a fonte de verdade:
-   com o JS ativo, todos os links `.whatsapp-link` são reescritos a partir dela,
-   já com a mensagem padrão pré-preenchida.
-2. **`index.html`** — os `href` dos 13 links `.whatsapp-link` existem apenas como
-   fallback para quando o JS não carrega. Troque com um find/replace de
-   `wa.me/5519999453094`, e não esqueça do `href="tel:+5519999453094"` na seção
-   de contato nem do link dentro do `<noscript>`.
+🔗 GitHub:
+https://github.com/RenatoRissato
 
-Também vale conferir o `telephone` no JSON-LD do `<head>`.
+---
 
-## Trocando o domínio
-
-O domínio está gravado em onze pontos, em quatro arquivos. Um find/replace de
-`https://israelarcondicionado.com` cobre todos:
-
-- `index.html` — `canonical`, `og:url`, `og:image`, `twitter:image` e os campos
-  `@id` / `url` / `image` / `logo` dos dois blocos JSON-LD
-- `robots.txt` — a linha `Sitemap:`
-- `sitemap.xml` — a tag `<loc>`
-
-## Dados estruturados
-
-Há dois blocos JSON-LD no `<head>`: `HVACBusiness` (endereço, telefone,
-coordenadas, horários) e `FAQPage` (as 8 perguntas).
-
-**O texto do `FAQPage` precisa bater com o que está visível na página.** Ao editar
-uma pergunta ou resposta na seção FAQ, edite o JSON-LD junto — o Google penaliza
-schema divergente do conteúdo.
-
-Não há `priceRange` por decisão do cliente: os serviços são sob orçamento.
-
-Depois de publicar, valide em:
-- [Rich Results Test](https://search.google.com/test/rich-results) — confere o FAQ
-- [Sharing Debugger](https://developers.facebook.com/tools/debug/) — força o cache da og:image
-
-## Imagem do hero
-
-`hero-instalacao-israel.webp` (700px) e `hero-instalacao-israel-2x.webp` (1122px)
-são servidas por `srcset`, para que telas de alta densidade recebam o dobro de
-pixels e as comuns baixem só a menor.
-
-O `<link rel="preload">` no `<head>` repete o mesmo `imagesrcset`/`imagesizes`
-do `<img>`. **Se alterar um, altere o outro** — valores divergentes fazem o
-navegador baixar duas versões da imagem.
-
-O `sizes` vem das larguras de `.hero-image-wrap` no CSS (430px, 360px, 48vw,
-76vw). Ao mexer nesses breakpoints, atualize o `sizes` junto.
-
-As duas saem do PNG original de 1122×1402 recebido do cliente. A 2x é a
-resolução nativa, sem upscale nem realce; a 1x é reduzida com um realce mínimo
-(sigma 0,6) que só compensa a suavização do downscale. Qualidade WebP 80 e 82 —
-os níveis acima foram testados e não mostraram diferença visível, só peso.
-
-## Regerando a og:image
-
-`assets/og-image.jpg` (1200×630) é gerada a partir dos assets do site com o
-`sharp`. O script de geração não faz parte do repositório porque roda uma vez;
-se precisar refazer, componha: `manutencao-ar-condicionado.webp` como fundo
-(resize cover), overlay em gradiente `#052b50 → #0e7db6`, a logo recortada em
-círculo e o texto. Mantenha 1200×630 e exporte em JPEG — WebP tem suporte
-irregular em previews de link.
-
-## Acordeão do FAQ
-
-Todas as perguntas começam fechadas — nenhuma vem aberta no carregamento.
-
-A altura é animada com `grid-template-rows: 0fr → 1fr`, técnica que interpola até
-a altura real do texto sem precisar de valor fixo. Por isso a resposta **não usa
-o atributo `hidden`**: ele cortaria a transição. Quem esconde o conteúdo fechado
-dos leitores de tela é `visibility: hidden`, que entra na mesma transição.
-
-O `padding` fica no `<p>`, dentro de `.faq-answer-inner`. Se estivesse no item do
-grid, ocuparia altura mesmo com a linha em `0fr` e a resposta nunca fecharia por
-completo — foi exatamente o que aconteceu na primeira tentativa.
-
-O sinal `+` / `−` é desenhado com dois filetes em `::before`/`::after` e comandado
-por `[aria-expanded="true"]` no CSS. O JS não escreve o caractere: só alterna
-`aria-expanded` e a classe `.is-open`.
-
-## Rótulos de seção
-
-Só duas seções têm rótulo acima do título: o topo da página ("Climatização em
-Limeira e região") e as avaliações ("Avaliações no Google"). Ambos dizem algo que
-o título não diz — a região atendida e a origem dos depoimentos.
-
-As outras seis seções perderam o rótulo que tinham. Eles apenas repetiam o
-título logo abaixo ("Serviços" sobre "Soluções completas para o seu
-ar-condicionado", "Tire suas dúvidas" sobre "Perguntas frequentes") e faziam a
-página parecer gerada por template.
-
-O estilo é frase corrida, sem traço decorativo e sem caixa alta. **Ao criar uma
-seção nova, não adicione rótulo por hábito**: só se ele informar algo que o
-título não cobre.
-
-## Ritmo visual das seções
-
-Três seções escuras ancoram a página — **hero**, **diferenciais** e **contato**
-(mais o rodapé) — e o restante respira em claro. É o que dá cadência à leitura.
-
-As exceções são os cards azuis de **problemas** e os três cards principais de
-**serviços**, assim por decisão do cliente. Vale saber o trade-off antes de
-mexer: essas duas seções vêm logo abaixo do hero e formam com ele uma sequência
-de azul, o que divide o peso visual da abertura da página. Se um dia a taxa de
-contato pelo hero preocupar, testar esses cards em claro é o primeiro
-experimento a fazer.
-
-Na seção de serviços o azul vale só para os três cards principais: os quatro
-compactos seguem claros, e é isso que o seletor `:not(.compact)` garante.
-
-Fora isso, evite acrescentar blocos escuros: quanto mais azul saturado na
-página, menos o verde do botão de WhatsApp se destaca — e é ele que converte. A
-cor tem três papéis separados:
-
-| Papel | Cor | Onde |
-|---|---|---|
-| Identidade | Azul | Apenas nas seções âncora |
-| Ação | Verde WhatsApp | Apenas nos botões de orçamento |
-| Conteúdo | Claro / branco | Todo o resto |
-
-Para destacar um card dentro de uma seção clara, prefira borda e sombra a fundo
-cheio — chama atenção sem criar massa escura.
-
-## Seção "Diferenciais" (stories)
-
-Cinco cards verticais em proporção 9:15 que rolam na horizontal, no formato de
-stories. O CTA de orçamento fica logo abaixo, fora do trilho, para os cards
-seguirem só com conteúdo.
-
-**Um mecanismo só para desktop e celular:** o trilho é um `overflow-x: auto` com
-`scroll-snap-type: x mandatory` e `scroll-snap-align: start` nos cards. O swipe
-do dedo, a barra de rolagem, as setas e as teclas ← → empurram esse mesmo scroll
-— não há biblioteca nem cálculo de arrasto no JS.
-
-- **Desktop**: largura `clamp(250px, 24vw, 310px)`, então cabem ~3,5 cards e
-  sempre há um cortado na borda, indicando que há mais. Setas nas laterais sobre
-  o trilho, que somem sozinhas nos extremos (`disabled`).
-- **Celular**: um card por vez em `min(78vw, 300px)`, deixando uma fatia do
-  próximo à mostra. As setas somem; ficam os indicadores.
-
-Os cards rodam sozinhos a cada 4 segundos (`STORIES_DELAY` no `script.js`),
-percorrendo os cinco e voltando ao primeiro. O card em foco fica em escala e cor
-plenas; os demais recuam com escala menor, opacidade e foto dessaturada.
-
-**O destaque tem índice próprio, não é derivado do `scrollLeft`.** É o que faz o
-rodízio funcionar no desktop: ali os cinco cards quase cabem juntos e sobram só
-uns 240px de rolagem, menos que a largura de um card. Lendo a posição do scroll,
-o ciclo travava entre o primeiro e o segundo. Agora o trilho só rola quando o
-card alvo não está inteiro na tela — em telas largas o destaque anda sem mover
-nada.
-
-Arrastar com o dedo continua mandando: durante o scroll do visitante o destaque
-segue o card mais centralizado. A trava `rolandoSozinho` impede que a rolagem
-programada seja confundida com gesto.
-
-O rodízio para no foco por teclado, com a aba em segundo plano e com o carrossel
-fora da tela. O botão de pausa atende à WCAG 2.2.2.
-
-**A pausa por hover só é registrada onde existe ponteiro de verdade**
-(`matchMedia('(hover: hover)')`). Em tela de toque o navegador dispara
-`mouseenter` sintético sem o `mouseleave` correspondente — o rodízio pausaria no
-primeiro toque e nunca mais voltaria. Pelo mesmo motivo o `touchstart` tem um
-`touchend` que devolve o rodízio depois de 2,5s: sem ele, encostar o dedo no
-carrossel ao rolar a página parava tudo em definitivo.
-
-O passo das setas é medido pela distância real entre dois cards
-(`cards[1].offsetLeft - cards[0].offsetLeft`), então o CSS pode mudar de largura
-sem que o JS precise saber.
-
-Sob `prefers-reduced-motion` não há rodízio, o zoom e a elevação não acontecem, a
-rolagem é instantânea e **todos os cards voltam a escala e opacidade cheias** —
-sem isso os não destacados ficariam apagados para sempre.
-
-O trilho tem `tabindex="0"` e `aria-roledescription="carrossel"`: quem navega
-pelo teclado foca nele e usa as setas.
-
-## Cards flutuantes do hero
-
-Os dois cards sobre a foto ("Garantia de 90 dias" e "Residencial e comercial")
-entram com fade e escala depois do bloco da imagem, e depois ficam pairando de
-leve, em fases opostas.
-
-O detalhe que faz funcionar: a entrada anima `scale` e a flutuação anima
-`translate`. São propriedades separadas de `transform`, então as duas animações
-rodam ao mesmo tempo sem uma sobrescrever a outra — com `transform` nas duas,
-apenas a última valeria.
-
-A animação está em `.hero-visual.visible .hero-badge`, não em `.hero-badge`
-direto: assim ela só começa quando o bloco da foto é revelado, e os cards não
-terminam de entrar antes de a imagem aparecer.
-
-Amplitude de 6px e ciclo de 6,5s são propositalmente discretos — o movimento não
-deve disputar atenção com o botão de orçamento. Sob `prefers-reduced-motion` não
-há animação nenhuma e os cards ficam visíveis.
-
-## Carrossel de avaliações
-
-Os seis depoimentos da seção `#avaliacoes` são **avaliações reais** publicadas
-por clientes no perfil do Google, transcritas literalmente com nome e data. Não
-invente, edite ou complete nenhum texto ali: só entra o que a pessoa escreveu.
-
-
-O rodízio é de 6 segundos (`CAROUSEL_DELAY` no `script.js`) e pausa sozinho
-quando o ponteiro está sobre o bloco, quando algo dentro dele recebe foco pelo
-teclado, quando a aba vai para segundo plano e quando o carrossel sai da tela.
-O botão de pausa existe por causa da WCAG 2.2.2 — conteúdo que se move sozinho
-precisa de um jeito de parar — e some sob `prefers-reduced-motion`, caso em que
-não há rotação automática nenhuma.
-
-Os slides ficam empilhados na mesma célula do grid, então a altura do bloco é a
-do maior depoimento e nada "pula" na troca. Ao acrescentar uma avaliação, copie
-um `<article class="review-slide">` e adicione um `.carousel-dot` com o
-`data-goto` seguinte.
-
-Não há estrelas nem `AggregateRating` no JSON-LD: as notas não foram conferidas
-uma a uma, e dado de avaliação é o tipo de coisa que não se estima.
-
-## Mobile
-
-Ajustes que já estão no CSS e convém preservar ao editar:
-
-- **Alvos de toque de 44px** (`.text-link`, links do rodapé, `.radio-group label`,
-  `.back-to-top`). Nos radios, a área clicável é o `<label>`, não o `<input>` —
-  por isso o label tem `min-height`.
-- **Separador da `.hero-note`**: em telas ≤560px o `<span>` vira `display: block`
-  com altura zero, quebrando a linha. Escondê-lo com `display: none` colaria as
-  duas frases numa só.
-- **Cards curtos em 2 colunas** (`.service-card.compact` e `.why-grid`) abaixo de
-  560px, com o ícone empilhado sobre o texto para caber nos ~170px da coluna.
-- **Dois botões são só de desktop**: "Ver avaliações no Google" e o de orçamento
-  dentro do FAQ ficam `display: none` abaixo de 820px. No celular o contato
-  segue pelo botão flutuante, pelo formulário e pelo botão da seção Serviços.
-  Junto com o `display: none` vão o `margin-bottom: 0` no parágrafo acima e um
-  `gap` menor — a margem existia para separar o texto do botão e, sem ele,
-  sobraria como espaço morto. Ao esconder qualquer outro elemento por
-  breakpoint, confira o espaçamento que ficou em volta.
-
-## Acessibilidade
-
-O site já cobre: skip-link, `aria-expanded`/`aria-controls` no menu e no FAQ,
-`aria-live` nas mensagens de erro do formulário, foco visível e
-`prefers-reduced-motion` respeitado no CSS e no JS. Preserve esses atributos ao
-editar o HTML.
-
-## Convenções do código
-
-**`script.js`** é uma sequência de funções `init*` chamadas no fim do arquivo.
-Cada uma busca os próprios elementos e desiste em silêncio se não os encontrar,
-para que remover uma seção do HTML não derrube o resto da página. Mantenha esse
-padrão ao adicionar comportamento.
-
-**`style.css`** concentra toda a paleta no `:root`. Não introduza cores
-hexadecimais no corpo do arquivo — crie ou reaproveite uma variável.
-
-Duas escalas cobrem tudo que fica sobre fundo escuro, nomeadas por luminosidade
-decrescente (100 é o mais claro):
-
-| Escala | Uso |
-|---|---|
-| `--on-dark-*` | Texto sobre hero, "diferenciais", contato e rodapé |
-| `--accent-*` | Ciano de destaque: eyebrows, ícones e rótulos sobre azul |
-
-Os números seguem a luminosidade, não a contagem: há lacunas onde um nível
-deixou de ser usado, e isso é intencional — nível novo só quando a hierarquia
-pedir, nunca renumerando os existentes.
-
-O design original tinha 19 tons aqui, muitos separados por diferenças
-imperceptíveis. Foram consolidados por distância perceptual (ΔE em CIELAB,
-limite 5 para texto e 4 para acento), escolhendo em cada grupo o tom de **maior
-contraste**, de modo que nenhum uso perdesse legibilidade. Todos ficam acima de
-WCAG AA sobre seus fundos reais.
-
-Ao escolher um nível, prefira o mais claro que couber na hierarquia: `100` para
-texto de destaque, `300` para corpo, `500`/`600` apenas para rótulos e notas
-de rodapé.
-
-## Formulário de orçamento
-
-Não há backend: o formulário valida no cliente e abre o WhatsApp com a mensagem
-montada. Nenhum dado é armazenado ou enviado a servidor.
-
-O `novalidate` é aplicado pelo JS (`form.noValidate = true`), nunca no HTML —
-assim, sem JavaScript, o navegador ainda exige os campos obrigatórios, e o
-`<noscript>` oferece o WhatsApp e o telefone como saída.
-
-## Deploy
-
-Suba os arquivos como estão em qualquer hospedagem estática (Vercel, Netlify,
-Cloudflare Pages, GitHub Pages ou hospedagem tradicional). Nenhuma etapa de build:
-deixe o comando de build **vazio** e a pasta de saída como a raiz do projeto. O
-`serve` é dependência de desenvolvimento e não vai para produção.
-
-Configure o servidor para servir `index.html` na raiz e redirecionar a variante
-com `www` para `https://israelarcondicionado.com/`, que é a URL declarada
-no `canonical`. Na Vercel isso é automático: basta marcar o domínio sem `www`
-como principal que ele cria o redirecionamento do `www` sozinho.
+⭐ Se gostou do projeto, considere deixar uma estrela no repositório.
